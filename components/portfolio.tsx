@@ -55,6 +55,7 @@ export function Portfolio() {
   return (
     <section id="portfolio" ref={sectionRef} className="py-24 md:py-32">
       <div className="container mx-auto px-6">
+
         {/* Header */}
         <div
           className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${
@@ -62,14 +63,19 @@ export function Portfolio() {
           }`}
         >
           <div className="inline-block px-4 py-1.5 bg-marble-brown/10 rounded-full mb-6">
-            <span className="text-sm font-medium text-marble-brown tracking-wide uppercase">
+            <span className="font-nav text-sm text-marble-brown tracking-widest uppercase">
               Our Portfolio
             </span>
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl font-semibold text-foreground mb-6">
-            Inspiring Installations
+
+          <h2 className="font-h2 text-4xl md:text-5xl font-bold text-foreground mb-6">
+            Inspiring{" "}
+            <span className="italic font-normal text-marble-brown">
+              Installations
+            </span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+
+          <p className="font-body text-lg text-muted-foreground">
             Explore our gallery of completed projects showcasing the beauty and
             versatility of natural stone in residential and commercial spaces.
           </p>
@@ -96,32 +102,36 @@ export function Portfolio() {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-marble-dark/0 group-hover:bg-marble-dark/60 transition-colors duration-500" />
-              
+
               {/* Hover Content */}
               <div className="absolute inset-0 p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <span className="text-marble-gold text-sm font-medium mb-1">
+                <span className="font-nav text-marble-gold text-xs tracking-widest uppercase mb-1">
                   {item.category}
                 </span>
                 <div className="flex items-center justify-between">
-                  <h3 className="font-serif text-2xl font-semibold text-primary-foreground">
+                  <h3 className="font-h2 text-2xl font-semibold text-white">
                     {item.title}
                   </h3>
-                  <div className="w-10 h-10 bg-primary-foreground/20 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:bg-marble-brown transition-colors">
-                    <ArrowUpRight className="w-5 h-5 text-primary-foreground" />
+                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:bg-marble-brown transition-colors">
+                    <ArrowUpRight className="w-5 h-5 text-white" />
                   </div>
                 </div>
               </div>
 
               {/* Bottom label always visible */}
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-marble-dark/80 to-transparent group-hover:opacity-0 transition-opacity duration-300">
-                <span className="text-primary-foreground/80 text-sm">{item.category}</span>
-                <h3 className="font-serif text-lg font-semibold text-primary-foreground">
+                <span className="font-nav text-white/80 text-xs tracking-widest uppercase">
+                  {item.category}
+                </span>
+                <h3 className="font-h2 text-lg font-semibold text-white">
                   {item.title}
                 </h3>
               </div>
+
             </div>
           ))}
         </div>
+
       </div>
     </section>
   )

@@ -19,9 +19,6 @@ import {
   MapPin,
 } from "lucide-react"
 
-/* ─────────────────────────────────────────
-   Scroll-reveal wrapper
-───────────────────────────────────────── */
 function Reveal({
   children,
   className = "",
@@ -60,12 +57,9 @@ function Reveal({
   )
 }
 
-/* ─────────────────────────────────────────
-   Data
-───────────────────────────────────────── */
 const stats = [
-  { value: "2004", label: "Founded" },
-  { value: "20+",  label: "Years of Trust" },
+  { value: "2004",  label: "Founded" },
+  { value: "20+",   label: "Years of Trust" },
   { value: "5000+", label: "Projects Done" },
   { value: "1000+", label: "Happy Clients" },
 ]
@@ -85,12 +79,12 @@ const visionPoints = [
 ]
 
 const trustFactors = [
-  { Icon: Award,        title: "Premium Quality",        desc: "Every piece is handpicked from the finest quarries, ensuring exceptional quality and natural beauty." },
-  { Icon: Users,        title: "Expert Team",            desc: "Our experienced team provides personalised guidance to help you choose the perfect stone for your project." },
-  { Icon: Shield,       title: "Authenticity Guaranteed",desc: "We guarantee the authenticity of all our products with proper documentation and certification." },
-  { Icon: Truck,        title: "Reliable Delivery",      desc: "Timely delivery across India with careful handling to ensure your stone arrives in perfect condition." },
-  { Icon: Star,         title: "Competitive Pricing",    desc: "Direct sourcing from quarries allows us to offer premium quality at the most competitive prices." },
-  { Icon: CheckCircle2, title: "After-Sales Support",    desc: "Our commitment doesn't end at sale — we provide installation guidance and maintenance support." },
+  { Icon: Award,        title: "Premium Quality",         desc: "Every piece is handpicked from the finest quarries, ensuring exceptional quality and natural beauty." },
+  { Icon: Users,        title: "Expert Team",             desc: "Our experienced team provides personalised guidance to help you choose the perfect stone for your project." },
+  { Icon: Shield,       title: "Authenticity Guaranteed", desc: "We guarantee the authenticity of all our products with proper documentation and certification." },
+  { Icon: Truck,        title: "Reliable Delivery",       desc: "Timely delivery across India with careful handling to ensure your stone arrives in perfect condition." },
+  { Icon: Star,         title: "Competitive Pricing",     desc: "Direct sourcing from quarries allows us to offer premium quality at the most competitive prices." },
+  { Icon: CheckCircle2, title: "After-Sales Support",     desc: "Our commitment doesn't end at sale — we provide installation guidance and maintenance support." },
 ]
 
 const showroomPerks = [
@@ -100,9 +94,6 @@ const showroomPerks = [
   "Virtual room visualisation available",
 ]
 
-/* ─────────────────────────────────────────
-   Page
-───────────────────────────────────────── */
 export default function AboutPage() {
   const [heroVisible, setHeroVisible] = useState(false)
 
@@ -114,8 +105,6 @@ export default function AboutPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
-
         :root {
           --cream:  #f9f6f1;
           --warm:   #ede9e0;
@@ -127,12 +116,11 @@ export default function AboutPage() {
         }
 
         .about-root {
-          font-family: 'Jost', sans-serif;
+          font-family: var(--font-body);
           color: var(--text);
           background: var(--cream);
         }
 
-        /* ── keyframes ── */
         @keyframes heroFade {
           from { opacity: 0; transform: translateY(20px); }
           to   { opacity: 1; transform: translateY(0); }
@@ -149,8 +137,11 @@ export default function AboutPage() {
           0%, 100% { transform: translateY(0); }
           50%       { transform: translateY(-6px); }
         }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50%       { opacity: 0.5; transform: scale(0.8); }
+        }
 
-        /* ── HERO (background unchanged — hero-marble.jpg) ── */
         .hero {
           position: relative;
           min-height: 92vh;
@@ -162,7 +153,6 @@ export default function AboutPage() {
           padding-top: 96px;
         }
         .hero-img { object-fit: cover; }
-        /* original gradient overlay preserved */
         .hero-overlay {
           position: absolute;
           inset: 0;
@@ -184,6 +174,7 @@ export default function AboutPage() {
           backdrop-filter: blur(6px);
           border-radius: 100px;
           padding: 6px 20px;
+          font-family: var(--font-nav);
           font-size: 11px;
           letter-spacing: 0.18em;
           text-transform: uppercase;
@@ -197,14 +188,10 @@ export default function AboutPage() {
           background: var(--brown);
           animation: pulse 2s infinite;
         }
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50%       { opacity: 0.5; transform: scale(0.8); }
-        }
         .hero-title {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h1);
           font-size: clamp(62px, 10vw, 108px);
-          font-weight: 300;
+          font-weight: 400;
           line-height: 0.92;
           color: var(--dark);
           margin-bottom: 12px;
@@ -212,7 +199,7 @@ export default function AboutPage() {
         }
         .hero-title em { font-style: italic; color: var(--brown); }
         .hero-sub {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h2);
           font-size: clamp(18px, 2.5vw, 26px);
           font-weight: 400;
           color: var(--muted);
@@ -220,6 +207,7 @@ export default function AboutPage() {
           margin-bottom: 28px;
         }
         .hero-desc {
+          font-family: var(--font-body);
           font-size: 15px;
           line-height: 1.8;
           color: var(--text);
@@ -234,8 +222,10 @@ export default function AboutPage() {
           color: #fff;
           padding: 14px 32px;
           border-radius: 100px;
-          font-size: 13px;
-          letter-spacing: 0.08em;
+          font-family: var(--font-nav);
+          font-size: 11px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
           text-decoration: none;
           transition: background 0.3s, transform 0.2s;
         }
@@ -250,6 +240,7 @@ export default function AboutPage() {
           align-items: center;
           gap: 6px;
           color: var(--muted);
+          font-family: var(--font-nav);
           font-size: 10px;
           letter-spacing: 0.16em;
           text-transform: uppercase;
@@ -257,7 +248,6 @@ export default function AboutPage() {
           z-index: 10;
         }
 
-        /* ── Stats bar ── */
         .stats-bar { background: var(--dark); padding: 28px 0; }
         .stats-inner {
           max-width: 900px;
@@ -269,25 +259,26 @@ export default function AboutPage() {
         .stat-item { padding: 12px 0; }
         .stat-item + .stat-item { border-left: 1px solid rgba(255,255,255,0.1); }
         .stat-value {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h1);
           font-size: 36px;
-          font-weight: 600;
+          font-weight: 400;
           color: var(--stone);
           line-height: 1;
           margin-bottom: 4px;
         }
         .stat-label {
+          font-family: var(--font-nav);
           font-size: 11px;
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: rgba(255,255,255,0.45);
         }
 
-        /* ── Shared section bits ── */
         .section-tag {
           display: inline-flex;
           align-items: center;
           gap: 8px;
+          font-family: var(--font-nav);
           font-size: 11px;
           letter-spacing: 0.18em;
           text-transform: uppercase;
@@ -302,15 +293,18 @@ export default function AboutPage() {
           background: var(--brown);
         }
         .section-title {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h2);
           font-size: clamp(30px, 4.5vw, 50px);
-          font-weight: 300;
+          font-weight: 700;
           color: var(--dark);
           line-height: 1.1;
         }
-        .section-title em { font-style: italic; color: var(--brown); }
+        .section-title em {
+          font-style: italic;
+          font-weight: 400;
+          color: var(--brown);
+        }
 
-        /* ── STORY ── */
         .story-section { padding: 96px 0; background: #fff; }
         .story-inner {
           max-width: 1100px;
@@ -324,11 +318,7 @@ export default function AboutPage() {
         @media (max-width: 860px) {
           .story-inner { grid-template-columns: 1fr; gap: 48px; }
         }
-        .story-img-wrap {
-          position: relative;
-          border-radius: 6px;
-          overflow: visible;
-        }
+        .story-img-wrap { position: relative; border-radius: 6px; overflow: visible; }
         .story-img-inner {
           position: relative;
           aspect-ratio: 4/3;
@@ -338,8 +328,7 @@ export default function AboutPage() {
         }
         .story-badge {
           position: absolute;
-          bottom: -28px;
-          right: -28px;
+          bottom: -28px; right: -28px;
           background: var(--dark);
           color: #fff;
           border-radius: 14px;
@@ -349,36 +338,30 @@ export default function AboutPage() {
           z-index: 2;
         }
         .story-badge-val {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h1);
           font-size: 38px;
-          font-weight: 600;
+          font-weight: 400;
           color: var(--stone);
           line-height: 1;
           margin-bottom: 4px;
         }
         .story-badge-label {
+          font-family: var(--font-nav);
           font-size: 10px;
           letter-spacing: 0.14em;
           text-transform: uppercase;
           color: rgba(255,255,255,0.5);
         }
         .story-text p {
+          font-family: var(--font-body);
           font-size: 14px;
           line-height: 1.9;
           color: var(--muted);
           margin-bottom: 18px;
         }
 
-        /* ── MISSION / VISION ── */
-        .mv-section { 
-        padding: 96px 0; 
-         background: #ffffff; 
-        }
-        .mv-inner {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 0 32px;
-        }
+        .mv-section { padding: 96px 0; background: #ffffff; }
+        .mv-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
         .mv-header { margin-bottom: 56px; }
         .mv-grid {
           display: grid;
@@ -386,7 +369,6 @@ export default function AboutPage() {
           gap: 20px;
         }
         @media (max-width: 760px) { .mv-grid { grid-template-columns: 1fr; } }
-
         .mv-card {
           background: #fff;
           border-radius: 6px;
@@ -399,7 +381,6 @@ export default function AboutPage() {
           box-shadow: 0 16px 48px rgba(0,0,0,0.08);
           transform: translateY(-4px);
         }
-        /* shimmer accent line at top */
         .mv-card::before {
           content: '';
           position: absolute;
@@ -421,13 +402,14 @@ export default function AboutPage() {
         }
         .mv-icon-wrap svg { color: var(--brown); }
         .mv-title {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h2);
           font-size: 28px;
           font-weight: 600;
           color: var(--dark);
           margin-bottom: 14px;
         }
         .mv-desc {
+          font-family: var(--font-body);
           font-size: 14px;
           line-height: 1.85;
           color: var(--muted);
@@ -438,12 +420,12 @@ export default function AboutPage() {
           display: flex;
           align-items: flex-start;
           gap: 10px;
+          font-family: var(--font-body);
           font-size: 13px;
           color: var(--text);
         }
         .mv-item svg { color: var(--brown); flex-shrink: 0; margin-top: 1px; }
 
-        /* ── WHY US ── */
         .why-section {
           padding: 96px 0;
           background: var(--dark);
@@ -453,7 +435,7 @@ export default function AboutPage() {
         .why-section::before {
           content: 'DM';
           position: absolute;
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h1);
           font-size: 420px;
           font-weight: 700;
           color: rgba(255,255,255,0.02);
@@ -479,7 +461,6 @@ export default function AboutPage() {
         }
         @media (max-width: 860px) { .why-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
-
         .why-card {
           background: rgba(255,255,255,0.04);
           border: 1px solid rgba(255,255,255,0.07);
@@ -507,19 +488,19 @@ export default function AboutPage() {
         .why-icon-wrap svg { color: var(--stone); }
         .why-card:hover .why-icon-wrap svg { color: #fff; }
         .why-card-title {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h2);
           font-size: 22px;
           font-weight: 600;
           color: #fff;
           margin-bottom: 10px;
         }
         .why-card-desc {
+          font-family: var(--font-body);
           font-size: 13px;
           line-height: 1.8;
           color: rgba(255,255,255,0.5);
         }
 
-        /* ── SHOWROOM ── */
         .showroom-section { padding: 96px 0; background: var(--cream); }
         .showroom-inner {
           max-width: 1100px;
@@ -534,6 +515,7 @@ export default function AboutPage() {
           .showroom-inner { grid-template-columns: 1fr; gap: 48px; }
         }
         .showroom-text p {
+          font-family: var(--font-body);
           font-size: 14px;
           line-height: 1.9;
           color: var(--muted);
@@ -544,6 +526,7 @@ export default function AboutPage() {
           display: flex;
           align-items: flex-start;
           gap: 12px;
+          font-family: var(--font-body);
           font-size: 14px;
           color: var(--text);
         }
@@ -557,8 +540,9 @@ export default function AboutPage() {
           color: #fff;
           padding: 14px 30px;
           border-radius: 100px;
-          font-size: 12px;
-          letter-spacing: 0.1em;
+          font-family: var(--font-nav);
+          font-size: 11px;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           text-decoration: none;
           font-weight: 500;
@@ -573,24 +557,21 @@ export default function AboutPage() {
           color: var(--dark);
           padding: 14px 30px;
           border-radius: 100px;
-          font-size: 12px;
-          letter-spacing: 0.1em;
+          font-family: var(--font-nav);
+          font-size: 11px;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           text-decoration: none;
           font-weight: 500;
           transition: background 0.3s, color 0.3s, transform 0.2s;
         }
-         .btn-outline:hover { 
-         background: var(--brown); 
-         color: #fff; 
-        border-color: var(--brown);
-        transform: translateY(-2px); 
+        .btn-outline:hover {
+          background: var(--brown);
+          color: #fff;
+          border-color: var(--brown);
+          transform: translateY(-2px);
         }
-        .showroom-imgs {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 14px;
-        }
+        .showroom-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
         .showroom-img-a {
           position: relative;
           aspect-ratio: 3/4;
@@ -607,14 +588,12 @@ export default function AboutPage() {
           margin-top: 32px;
         }
 
-        /* ── CTA ── */
         .cta-section {
           padding: 112px 0;
           position: relative;
           overflow: hidden;
           text-align: center;
         }
-        /* marble texture background — same approach as other pages */
         .cta-bg {
           position: absolute;
           inset: 0;
@@ -636,15 +615,20 @@ export default function AboutPage() {
           padding: 0 32px;
         }
         .cta-title {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h2);
           font-size: clamp(36px, 5.5vw, 60px);
-          font-weight: 300;
+          font-weight: 700;
           color: var(--dark);
           line-height: 1.1;
           margin-bottom: 20px;
         }
-        .cta-title em { font-style: italic; color: var(--brown); }
+        .cta-title em {
+          font-style: italic;
+          font-weight: 400;
+          color: var(--brown);
+        }
         .cta-desc {
+          font-family: var(--font-body);
           font-size: 15px;
           line-height: 1.8;
           color: var(--muted);
@@ -667,8 +651,10 @@ export default function AboutPage() {
           display: flex;
           align-items: center;
           gap: 8px;
-          font-size: 12px;
-          letter-spacing: 0.06em;
+          font-family: var(--font-nav);
+          font-size: 11px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
           color: var(--muted);
         }
         .cta-badge svg { color: var(--brown); }
@@ -682,7 +668,6 @@ export default function AboutPage() {
       <div className="about-root">
         <Header />
 
-        {/* ── HERO — original hero-marble.jpg background, untouched ── */}
         <section className="hero">
           <Image
             src="/images/hero-marble.jpg"
@@ -694,7 +679,6 @@ export default function AboutPage() {
           <div className="hero-overlay" />
 
           <div className="hero-content">
-            {/* eyebrow */}
             <div
               className="hero-eyebrow"
               style={{ opacity: heroVisible ? 1 : 0, transform: heroVisible ? "translateY(0)" : "translateY(16px)", transition: "opacity 0.9s ease 0.1s, transform 0.9s ease 0.1s" }}
@@ -740,7 +724,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── STATS BAR ── */}
         <div className="stats-bar">
           <div className="stats-inner">
             {stats.map((s) => (
@@ -752,7 +735,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* ── STORY ── */}
         <section className="story-section" id="story">
           <div className="story-inner">
             <Reveal>
@@ -791,7 +773,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── MISSION & VISION ── */}
         <section className="mv-section">
           <div className="mv-inner">
             <Reveal className="mv-header">
@@ -802,12 +783,9 @@ export default function AboutPage() {
             </Reveal>
 
             <div className="mv-grid">
-              {/* Mission */}
               <Reveal delay={0.05}>
                 <div className="mv-card">
-                  <div className="mv-icon-wrap">
-                    <Target size={24} />
-                  </div>
+                  <div className="mv-icon-wrap"><Target size={24} /></div>
                   <div className="mv-title">Our Mission</div>
                   <p className="mv-desc">
                     To provide the finest quality marble, granite, and stone materials that
@@ -817,20 +795,16 @@ export default function AboutPage() {
                   <div className="mv-list">
                     {missionPoints.map((pt) => (
                       <div className="mv-item" key={pt}>
-                        <CheckCircle2 size={14} />
-                        {pt}
+                        <CheckCircle2 size={14} />{pt}
                       </div>
                     ))}
                   </div>
                 </div>
               </Reveal>
 
-              {/* Vision */}
               <Reveal delay={0.12}>
                 <div className="mv-card">
-                  <div className="mv-icon-wrap">
-                    <Eye size={24} />
-                  </div>
+                  <div className="mv-icon-wrap"><Eye size={24} /></div>
                   <div className="mv-title">Our Vision</div>
                   <p className="mv-desc">
                     To be the most trusted and preferred natural stone supplier in India, known
@@ -840,8 +814,7 @@ export default function AboutPage() {
                   <div className="mv-list">
                     {visionPoints.map((pt) => (
                       <div className="mv-item" key={pt}>
-                        <CheckCircle2 size={14} />
-                        {pt}
+                        <CheckCircle2 size={14} />{pt}
                       </div>
                     ))}
                   </div>
@@ -851,7 +824,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── WHY TRUST US ── */}
         <section className="why-section">
           <div className="why-inner">
             <Reveal className="why-header">
@@ -877,7 +849,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── SHOWROOM ── */}
         <section className="showroom-section">
           <div className="showroom-inner">
             <Reveal className="showroom-text">
@@ -893,8 +864,7 @@ export default function AboutPage() {
               <div className="showroom-list">
                 {showroomPerks.map((perk) => (
                   <div className="showroom-item" key={perk}>
-                    <CheckCircle2 size={14} />
-                    {perk}
+                    <CheckCircle2 size={14} />{perk}
                   </div>
                 ))}
               </div>
@@ -911,17 +881,16 @@ export default function AboutPage() {
             <Reveal delay={0.15}>
               <div className="showroom-imgs">
                 <div className="showroom-img-a">
-                  <Image src="/images/showroom.jpg" alt="Dayanand Marbles showroom" fill style={{ objectFit: "cover" }} />
+                  <Image src="/images/showroom.png" alt="Dayanand Marbles showroom" fill style={{ objectFit: "cover" }} />
                 </div>
                 <div className="showroom-img-b">
-                  <Image src="/images/team.jpg" alt="Our expert team" fill style={{ objectFit: "cover" }} />
+                  <Image src="/images/our expert team.png" alt="Our expert team" fill style={{ objectFit: "cover" }} />
                 </div>
               </div>
             </Reveal>
           </div>
         </section>
 
-        {/* ── CTA ── */}
         <section className="cta-section">
           <div className="cta-bg" />
           <Reveal className="cta-inner">
@@ -946,8 +915,7 @@ export default function AboutPage() {
             <div className="cta-badges">
               {["Free Consultation", "Quality Guaranteed", "Expert Guidance"].map((b) => (
                 <span className="cta-badge" key={b}>
-                  <CheckCircle2 size={14} />
-                  {b}
+                  <CheckCircle2 size={14} />{b}
                 </span>
               ))}
             </div>

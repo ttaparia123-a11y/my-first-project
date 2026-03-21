@@ -58,6 +58,7 @@ export function WhyChooseUs() {
   return (
     <section ref={sectionRef} className="py-24 md:py-32 bg-marble-dark text-primary-foreground">
       <div className="container mx-auto px-6">
+
         {/* Header */}
         <div
           className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${
@@ -65,15 +66,20 @@ export function WhyChooseUs() {
           }`}
         >
           <div className="inline-block px-4 py-1.5 bg-primary-foreground/10 rounded-full mb-6">
-            <span className="text-sm font-medium text-marble-gold tracking-wide uppercase">
+            <span className="font-nav text-sm text-marble-gold tracking-widest uppercase">
               Why Choose Us
             </span>
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl font-semibold mb-6">
-            The Dayanand Marbles Difference
+
+          <h2 className="font-h2 text-4xl md:text-5xl font-bold text-white mb-6">
+            The Dayanand Marbles{" "}
+            <span className="italic font-normal text-marble-gold">
+              Difference
+            </span>
           </h2>
-          <p className="text-lg text-primary-foreground/70">
-            We don&apos;t just supply stone - we deliver excellence, trust, and a
+
+          <p className="font-body text-lg text-white/70">
+            We don&apos;t just supply stone — we deliver excellence, trust, and a
             partnership that lasts beyond your project.
           </p>
         </div>
@@ -83,7 +89,7 @@ export function WhyChooseUs() {
           {reasons.map((reason, index) => (
             <div
               key={reason.title}
-              className={`group p-8 bg-primary-foreground/5 rounded-xl border border-primary-foreground/10 hover:border-marble-gold/30 transition-all duration-500 ${
+              className={`group p-8 bg-white/5 rounded-xl border border-white/10 hover:border-marble-gold/30 transition-all duration-500 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
@@ -93,20 +99,27 @@ export function WhyChooseUs() {
                   <reason.icon className="w-7 h-7 text-marble-gold group-hover:text-marble-dark transition-colors" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-2xl font-semibold mb-3 group-hover:text-marble-gold transition-colors">
+                  {/* Card Title */}
+                  <h3 className="font-h2 text-2xl font-semibold text-white mb-3 group-hover:text-marble-gold transition-colors">
                     {reason.title}
                   </h3>
-                  <p className="text-primary-foreground/70 leading-relaxed mb-6">
+
+                  {/* Card Description */}
+                  <p className="font-body text-white/70 leading-relaxed mb-6">
                     {reason.description}
                   </p>
+
+                  {/* Highlights */}
                   <div className="flex flex-wrap gap-3">
                     {reason.highlights.map((highlight) => (
                       <div
                         key={highlight}
-                        className="flex items-center gap-2 text-sm text-primary-foreground/80"
+                        className="flex items-center gap-2"
                       >
-                        <CheckCircle className="w-4 h-4 text-marble-gold" />
-                        {highlight}
+                        <CheckCircle className="w-4 h-4 text-marble-gold shrink-0" />
+                        <span className="font-nav text-xs text-white/80 tracking-wider uppercase">
+                          {highlight}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -115,6 +128,7 @@ export function WhyChooseUs() {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   )

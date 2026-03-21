@@ -18,9 +18,6 @@ import {
 } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
  
-/* ─────────────────────────────────────────
-   Scroll-reveal wrapper (matches ProductsPage)
-───────────────────────────────────────── */
 function Reveal({
   children,
   className = "",
@@ -59,9 +56,6 @@ function Reveal({
   )
 }
  
-/* ─────────────────────────────────────────
-   Data
-───────────────────────────────────────── */
 const services = [
   {
     id: "marble",
@@ -142,15 +136,26 @@ const stats = [
   { value: "100%", label: "Quality Assured" },
 ]
  
-/* ─────────────────────────────────────────
-   Page
-───────────────────────────────────────── */
 export default function ServicesPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
- 
+        /*
+         * FONT SYSTEM (matches brand identity screenshots)
+         * --------------------------------------------------
+         * var(--font-h1)   → DM Serif Display   — H1 hero titles, stat values, large display numbers
+         * var(--font-h2)   → Playfair Display    — H2 section headings (Bold 700), H3 card titles (Italic 400)
+         * var(--font-nav)  → Tenor Sans          — Nav, eyebrows, buttons, labels, tags (caps + tracking)
+         * var(--font-body) → Outfit              — Body paragraphs, descriptions, feature lists
+         *
+         * NOTE: These CSS variables must be defined in your layout.tsx / globals.css like:
+         *   --font-h1:   'DM Serif Display', serif;
+         *   --font-h2:   'Playfair Display', serif;
+         *   --font-nav:  'Tenor Sans', sans-serif;
+         *   --font-body: 'Outfit', sans-serif;
+         * And the Google Fonts import should include all four families.
+         */
+
         :root {
           --cream:  #f9f6f1;
           --warm:   #ede9e0;
@@ -162,12 +167,12 @@ export default function ServicesPage() {
         }
  
         .svc-root {
-          font-family: 'Jost', sans-serif;
+          /* Outfit for base body text — readable, modern, warm */
+          font-family: var(--font-body);
           color: var(--text);
           background: var(--cream);
         }
  
-        /* ── keyframes ── */
         @keyframes heroFade {
           from { opacity: 0; transform: translateY(20px); }
           to   { opacity: 1; transform: translateY(0); }
@@ -180,16 +185,15 @@ export default function ServicesPage() {
           0%   { background-position: -200% center; }
           100% { background-position: 200% center; }
         }
-        @keyframes lineGrow {
-          from { width: 0; }
-          to   { width: 100%; }
-        }
         @keyframes floatBadge {
           0%, 100% { transform: translateY(0); }
           50%       { transform: translateY(-6px); }
         }
- 
-        /* ── Hero ── */
+
+        /* ─────────────────────────────────────────
+           HERO
+           Font: DM Serif Display (h1), Playfair Display (sub), Tenor Sans (eyebrow/cta/scroll)
+        ───────────────────────────────────────── */
         .hero {
           position: relative;
           min-height: 92vh;
@@ -220,6 +224,8 @@ export default function ServicesPage() {
           max-width: 780px;
           padding: 0 24px;
         }
+
+        /* Tenor Sans — eyebrow label / tag pill */
         .hero-eyebrow {
           display: inline-flex;
           align-items: center;
@@ -229,11 +235,12 @@ export default function ServicesPage() {
           backdrop-filter: blur(6px);
           border-radius: 100px;
           padding: 6px 20px;
+          font-family: var(--font-nav);      /* Tenor Sans */
           font-size: 11px;
           letter-spacing: 0.18em;
           text-transform: uppercase;
           color: var(--brown);
-          font-weight: 500;
+          font-weight: 400;                  /* Tenor Sans is Regular 400 */
           margin-bottom: 32px;
           opacity: 0;
           animation: heroFade 0.9s ease 0.1s forwards;
@@ -244,10 +251,12 @@ export default function ServicesPage() {
           background: var(--brown);
           flex-shrink: 0;
         }
+
+        /* DM Serif Display — H1 hero title */
         .hero-title {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(64px, 10vw, 110px);
-          font-weight: 300;
+          font-family: var(--font-h1);       /* DM Serif Display */
+          font-size: clamp(64px, 10vw, 108px);
+          font-weight: 400;                  /* DM Serif Display Regular 400 */
           line-height: 0.92;
           color: var(--dark);
           margin-bottom: 12px;
@@ -255,12 +264,15 @@ export default function ServicesPage() {
           opacity: 0;
           animation: heroFade 0.9s ease 0.3s forwards;
         }
+        /* Italic portion stays in DM Serif Display italic */
         .hero-title em {
           font-style: italic;
           color: var(--brown);
         }
+
+        /* Playfair Display — hero sub heading */
         .hero-sub {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h2);       /* Playfair Display */
           font-size: clamp(18px, 2.5vw, 26px);
           font-weight: 400;
           color: var(--muted);
@@ -269,15 +281,20 @@ export default function ServicesPage() {
           opacity: 0;
           animation: heroFade 0.9s ease 0.45s forwards;
         }
+
+        /* Outfit — hero body description */
         .hero-desc {
+          font-family: var(--font-body);     /* Outfit */
           font-size: 15px;
-          line-height: 1.8;
+          line-height: 1.85;
           color: var(--text);
           opacity: 0;
           animation: heroFade 0.9s ease 0.6s forwards;
           max-width: 500px;
           margin: 0 auto 48px;
         }
+
+        /* Tenor Sans — CTA button (label style) */
         .hero-cta {
           display: inline-flex;
           align-items: center;
@@ -286,14 +303,18 @@ export default function ServicesPage() {
           color: #fff;
           padding: 14px 32px;
           border-radius: 100px;
-          font-size: 13px;
-          letter-spacing: 0.08em;
+          font-family: var(--font-nav);      /* Tenor Sans */
+          font-size: 11px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
           text-decoration: none;
           transition: background 0.3s, transform 0.2s;
           opacity: 0;
           animation: heroFade 0.9s ease 0.75s forwards;
         }
         .hero-cta:hover { background: var(--brown); transform: translateY(-2px); }
+
+        /* Tenor Sans — scroll label */
         .hero-scroll {
           position: absolute;
           bottom: 32px;
@@ -304,13 +325,17 @@ export default function ServicesPage() {
           align-items: center;
           gap: 6px;
           color: var(--muted);
+          font-family: var(--font-nav);      /* Tenor Sans */
           font-size: 10px;
           letter-spacing: 0.16em;
           text-transform: uppercase;
           animation: bounce 2s infinite;
         }
- 
-        /* ── Stats bar ── */
+
+        /* ─────────────────────────────────────────
+           STATS BAR
+           Font: DM Serif Display (values), Outfit Medium caps (labels)
+        ───────────────────────────────────────── */
         .stats-bar {
           background: var(--dark);
           padding: 28px 0;
@@ -324,31 +349,43 @@ export default function ServicesPage() {
         }
         .stat-item { padding: 12px 0; }
         .stat-item + .stat-item { border-left: 1px solid rgba(255,255,255,0.1); }
+
+        /* DM Serif Display — large stat numbers */
         .stat-value {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h1);       /* DM Serif Display */
           font-size: 36px;
-          font-weight: 600;
+          font-weight: 400;
           color: var(--stone);
           line-height: 1;
           margin-bottom: 4px;
         }
+
+        /* Outfit Medium caps — stat labels */
         .stat-label {
+          font-family: var(--font-body);     /* Outfit */
           font-size: 11px;
-          letter-spacing: 0.12em;
+          font-weight: 500;                  /* Outfit Medium 500 */
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           color: rgba(255,255,255,0.45);
         }
- 
-        /* ── Section shared ── */
+
+        /* ─────────────────────────────────────────
+           SHARED SECTION ELEMENTS
+           Font: Tenor Sans (tags), Playfair Display Bold (titles)
+        ───────────────────────────────────────── */
+
+        /* Tenor Sans — section eyebrow tags */
         .section-tag {
           display: inline-flex;
           align-items: center;
           gap: 8px;
+          font-family: var(--font-nav);      /* Tenor Sans */
           font-size: 11px;
           letter-spacing: 0.18em;
           text-transform: uppercase;
           color: var(--brown);
-          font-weight: 500;
+          font-weight: 400;
           margin-bottom: 16px;
         }
         .section-tag::before {
@@ -358,16 +395,25 @@ export default function ServicesPage() {
           height: 1px;
           background: var(--brown);
         }
+
+        /* Playfair Display Bold 700 — H2 section headings */
         .section-title {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(32px, 4.5vw, 52px);
-          font-weight: 300;
+          font-family: var(--font-h2);       /* Playfair Display */
+          font-size: clamp(30px, 4.5vw, 50px);
+          font-weight: 700;                  /* Playfair Display Bold 700 */
           color: var(--dark);
           line-height: 1.1;
         }
-        .section-title em { font-style: italic; color: var(--brown); }
- 
-        /* ── SERVICES GRID ── */
+        /* Italic on em stays Playfair Display Italic 400 */
+        .section-title em {
+          font-style: italic;
+          font-weight: 400;
+          color: var(--brown);
+        }
+
+        /* ─────────────────────────────────────────
+           SERVICES SECTION
+        ───────────────────────────────────────── */
         .services-section {
           padding: 96px 0;
           background: #fff;
@@ -379,12 +425,8 @@ export default function ServicesPage() {
         }
         .services-header { margin-bottom: 72px; }
  
-        .svc-grid {
-          display: grid;
-          gap: 2px;
-        }
+        .svc-grid { display: grid; gap: 2px; }
  
-        /* Each service card alternates layout like product page */
         .svc-card {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -398,7 +440,6 @@ export default function ServicesPage() {
         .svc-card.reverse { direction: rtl; }
         .svc-card.reverse > * { direction: ltr; }
  
-        /* Icon / visual side */
         .svc-visual {
           position: relative;
           background: var(--dark);
@@ -408,7 +449,6 @@ export default function ServicesPage() {
           overflow: hidden;
           min-height: 340px;
         }
-        /* animated marble-like shimmer on icon panel */
         .svc-visual::before {
           content: '';
           position: absolute;
@@ -417,21 +457,22 @@ export default function ServicesPage() {
           background-size: 200% 100%;
           animation: shimmer 3.5s ease infinite;
         }
+
+        /* DM Serif Display — large background number in visual panel */
         .svc-visual-num {
           position: absolute;
           top: 24px;
           left: 28px;
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h1);       /* DM Serif Display */
           font-size: 80px;
-          font-weight: 700;
+          font-weight: 400;
           color: rgba(255,255,255,0.05);
           line-height: 1;
           user-select: none;
         }
         .svc-icon-wrap {
           position: relative;
-          width: 96px;
-          height: 96px;
+          width: 96px; height: 96px;
           border-radius: 24px;
           background: rgba(255,255,255,0.07);
           border: 1px solid rgba(196,180,154,0.2);
@@ -452,61 +493,77 @@ export default function ServicesPage() {
           flex-direction: column;
           justify-content: center;
         }
+
+        /* DM Serif Display — decorative faded number */
         .svc-num {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h1);       /* DM Serif Display */
           font-size: 72px;
-          font-weight: 300;
+          font-weight: 400;
           color: var(--stone);
           opacity: 0.3;
           line-height: 1;
           margin-bottom: -8px;
         }
+
+        /* Playfair Display Bold 700 — service card H3 title */
         .svc-title {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 32px;
-          font-weight: 600;
+          font-family: var(--font-h2);       /* Playfair Display */
+          font-size: 28px;
+          font-weight: 700;                  /* Bold 700 for H2-level card title */
           color: var(--dark);
           margin-bottom: 4px;
         }
+
+        /* Outfit Medium caps — service subtitle / tag */
         .svc-subtitle {
+          font-family: var(--font-body);     /* Outfit */
           font-size: 11px;
-          letter-spacing: 0.16em;
+          font-weight: 500;                  /* Outfit Medium 500 */
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           color: var(--brown);
           margin-bottom: 18px;
         }
+
+        /* Outfit Regular — service description */
         .svc-desc {
+          font-family: var(--font-body);     /* Outfit */
           font-size: 14px;
-          line-height: 1.8;
+          line-height: 1.85;
           color: var(--muted);
           margin-bottom: 24px;
           max-width: 340px;
         }
+
         .svc-features {
           display: flex;
           flex-direction: column;
           gap: 8px;
           margin-bottom: 32px;
         }
+
+        /* Outfit Regular — feature list items */
         .svc-feature {
           display: flex;
           align-items: center;
           gap: 10px;
+          font-family: var(--font-body);     /* Outfit */
           font-size: 13px;
           color: var(--text);
         }
         .svc-feature svg { color: var(--brown); flex-shrink: 0; }
- 
-        /* animated underline on hover */
+
+        /* Tenor Sans — inline link / action */
         .svc-link {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          font-size: 12px;
-          letter-spacing: 0.12em;
+          font-family: var(--font-nav);      /* Tenor Sans */
+          font-size: 11px;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--dark);
-          font-weight: 500;
+          font-weight: 400;
           text-decoration: none;
           position: relative;
           width: fit-content;
@@ -535,8 +592,10 @@ export default function ServicesPage() {
           .stats-inner { grid-template-columns: repeat(2, 1fr); }
           .stat-item:nth-child(3) { border-left: none; }
         }
- 
-        /* ── EXPERTISE STRIP ── */
+
+        /* ─────────────────────────────────────────
+           EXPERTISE SECTION
+        ───────────────────────────────────────── */
         .expertise-section {
           padding: 96px 0;
           position: relative;
@@ -568,7 +627,10 @@ export default function ServicesPage() {
         @media (max-width: 900px) {
           .expertise-inner { grid-template-columns: 1fr; gap: 48px; }
         }
+
+        /* Outfit Regular — expertise body paragraphs */
         .expertise-text p {
+          font-family: var(--font-body);     /* Outfit */
           font-size: 14px;
           line-height: 1.9;
           color: var(--muted);
@@ -590,34 +652,44 @@ export default function ServicesPage() {
         .exp-badge:nth-child(2) { animation-delay: 1s; }
         .exp-badge:nth-child(3) { animation-delay: 2s; }
         .exp-badge:nth-child(4) { animation-delay: 3s; }
+
+        /* DM Serif Display — large badge stat values */
         .exp-badge-val {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h1);       /* DM Serif Display */
           font-size: 42px;
-          font-weight: 600;
+          font-weight: 400;
           color: var(--brown);
           line-height: 1;
           margin-bottom: 6px;
         }
+
+        /* Outfit Medium caps — badge labels */
         .exp-badge-label {
+          font-family: var(--font-body);     /* Outfit */
           font-size: 11px;
-          letter-spacing: 0.12em;
+          font-weight: 500;                  /* Outfit Medium 500 */
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--muted);
         }
- 
-        /* ── WHY US ── */
+
+        /* ─────────────────────────────────────────
+           WHY US SECTION
+        ───────────────────────────────────────── */
         .why-section {
           padding: 96px 0;
           background: var(--dark);
           position: relative;
           overflow: hidden;
         }
+
+        /* DM Serif Display — decorative watermark */
         .why-section::before {
           content: 'DM';
           position: absolute;
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h1);       /* DM Serif Display */
           font-size: 420px;
-          font-weight: 700;
+          font-weight: 400;
           color: rgba(255,255,255,0.02);
           top: 50%; left: 50%;
           transform: translate(-50%, -50%);
@@ -669,14 +741,19 @@ export default function ServicesPage() {
           justify-content: center;
           flex-shrink: 0;
         }
+
+        /* Outfit Regular — why us list labels */
         .why-label {
+          font-family: var(--font-body);     /* Outfit */
           font-size: 13px;
           color: rgba(255,255,255,0.8);
           font-weight: 400;
           letter-spacing: 0.02em;
         }
- 
-        /* ── PROCESS ── */
+
+        /* ─────────────────────────────────────────
+           PROCESS SECTION
+        ───────────────────────────────────────── */
         .process-section {
           padding: 96px 0;
           background: var(--warm);
@@ -694,7 +771,6 @@ export default function ServicesPage() {
           grid-template-columns: repeat(4, 1fr);
           gap: 24px;
         }
-        /* connecting line */
         .process-track::before {
           content: '';
           position: absolute;
@@ -707,9 +783,7 @@ export default function ServicesPage() {
           pointer-events: none;
         }
         @media (max-width: 900px) {
-          .process-track {
-            grid-template-columns: 1fr 1fr;
-          }
+          .process-track { grid-template-columns: 1fr 1fr; }
           .process-track::before { display: none; }
         }
         @media (max-width: 560px) {
@@ -739,6 +813,8 @@ export default function ServicesPage() {
           position: relative;
         }
         .process-step-circle svg { color: #fff; }
+
+        /* Outfit Medium caps — step number badge */
         .process-step-num {
           position: absolute;
           top: -6px; right: -6px;
@@ -746,26 +822,35 @@ export default function ServicesPage() {
           border-radius: 50%;
           background: var(--brown);
           color: #fff;
+          font-family: var(--font-body);     /* Outfit */
           font-size: 10px;
-          font-weight: 700;
+          font-weight: 500;
           display: flex;
           align-items: center;
           justify-content: center;
         }
+
+        /* Playfair Display Italic 400 — process card H3 title */
         .process-title {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h2);       /* Playfair Display */
           font-size: 22px;
-          font-weight: 600;
+          font-weight: 400;
+          font-style: italic;                /* H3 card title = Playfair Italic per screenshots */
           color: var(--dark);
           margin-bottom: 12px;
         }
+
+        /* Outfit Regular — process description */
         .process-desc {
+          font-family: var(--font-body);     /* Outfit */
           font-size: 13px;
-          line-height: 1.8;
+          line-height: 1.85;
           color: var(--muted);
         }
- 
-        /* ── CTA ── */
+
+        /* ─────────────────────────────────────────
+           CTA SECTION
+        ───────────────────────────────────────── */
         .cta-section {
           padding: 112px 0;
           position: relative;
@@ -792,18 +877,27 @@ export default function ServicesPage() {
           margin: 0 auto;
           padding: 0 32px;
         }
+
+        /* Playfair Display Bold 700 — CTA H2 heading */
         .cta-title {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: var(--font-h2);       /* Playfair Display */
           font-size: clamp(36px, 5.5vw, 60px);
-          font-weight: 300;
+          font-weight: 700;                  /* Bold 700 */
           color: var(--dark);
           line-height: 1.1;
           margin-bottom: 20px;
         }
-        .cta-title em { font-style: italic; color: var(--brown); }
+        .cta-title em {
+          font-style: italic;
+          font-weight: 400;
+          color: var(--brown);
+        }
+
+        /* Outfit Regular — CTA description */
         .cta-desc {
+          font-family: var(--font-body);     /* Outfit */
           font-size: 15px;
-          line-height: 1.8;
+          line-height: 1.85;
           color: var(--muted);
           margin-bottom: 44px;
         }
@@ -814,6 +908,8 @@ export default function ServicesPage() {
           flex-wrap: wrap;
           margin-bottom: 48px;
         }
+
+        /* Tenor Sans — primary button */
         .cta-btn-primary {
           display: inline-flex;
           align-items: center;
@@ -822,14 +918,17 @@ export default function ServicesPage() {
           color: #fff;
           padding: 15px 34px;
           border-radius: 100px;
-          font-size: 12px;
-          letter-spacing: 0.12em;
+          font-family: var(--font-nav);      /* Tenor Sans */
+          font-size: 11px;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           text-decoration: none;
-          font-weight: 500;
+          font-weight: 400;
           transition: background 0.3s, transform 0.2s;
         }
         .cta-btn-primary:hover { background: var(--brown); transform: translateY(-2px); }
+
+        /* Tenor Sans — secondary / outline button */
         .cta-btn-secondary {
           display: inline-flex;
           align-items: center;
@@ -839,34 +938,52 @@ export default function ServicesPage() {
           padding: 15px 34px;
           border-radius: 100px;
           border: 1px solid var(--dark);
-          font-size: 12px;
-          letter-spacing: 0.12em;
+          font-family: var(--font-nav);      /* Tenor Sans */
+          font-size: 11px;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           text-decoration: none;
-          font-weight: 500;
+          font-weight: 400;
           transition: background 0.3s, color 0.3s, transform 0.2s;
         }
         .cta-btn-secondary:hover {
-        background: var(--brown);
-        color: #fff;
-        border-color: var(--brown);
-        transform: translateY(-2px);
-       }
+          background: var(--brown);
+          color: #fff;
+          border-color: var(--brown);
+          transform: translateY(-2px);
+        }
         .cta-badges {
           display: flex;
           justify-content: center;
           gap: 32px;
           flex-wrap: wrap;
         }
+
+        /* Outfit Medium caps — trust badge labels */
         .cta-badge {
           display: flex;
           align-items: center;
           gap: 8px;
-          font-size: 12px;
-          letter-spacing: 0.06em;
+          font-family: var(--font-body);     /* Outfit */
+          font-size: 11px;
+          font-weight: 500;                  /* Outfit Medium 500 */
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
           color: var(--muted);
         }
         .cta-badge svg { color: var(--brown); }
+
+        /* ─────────────────────────────────────────
+           PROCESS HEADER SUBTITLE
+        ───────────────────────────────────────── */
+        .process-subtitle {
+          font-family: var(--font-body);     /* Outfit */
+          font-size: 15px;
+          line-height: 1.75;
+          color: var(--muted);
+          max-width: 520px;
+          margin: 16px auto 0;
+        }
       `}</style>
  
       <div className="svc-root">
@@ -877,29 +994,35 @@ export default function ServicesPage() {
           <div className="hero-bg" />
  
           <div className="hero-content">
+            {/* Tenor Sans eyebrow */}
             <div className="hero-eyebrow">
               <span className="dot" />
               Dayanand Marbles &mdash; Our Services
             </div>
  
+            {/* DM Serif Display H1 */}
             <h1 className="hero-title">
               Expert<br /><em>Services</em>
             </h1>
  
+            {/* Playfair Display sub */}
             <p className="hero-sub">
               Supply · Polishing · Restoration
             </p>
  
+            {/* Outfit body */}
             <p className="hero-desc">
               From premium stone supply to professional marble polishing, we deliver
               excellence at every step of your natural stone journey.
             </p>
  
+            {/* Tenor Sans CTA */}
             <Link href="#services" className="hero-cta">
               Explore Services <ArrowRight size={16} />
             </Link>
           </div>
  
+          {/* Tenor Sans scroll label */}
           <div className="hero-scroll">
             <ChevronDown size={18} />
             <span>Scroll</span>
@@ -911,7 +1034,9 @@ export default function ServicesPage() {
           <div className="stats-inner">
             {stats.map((s) => (
               <div className="stat-item" key={s.label}>
+                {/* DM Serif Display */}
                 <div className="stat-value">{s.value}</div>
+                {/* Outfit Medium caps */}
                 <div className="stat-label">{s.label}</div>
               </div>
             ))}
@@ -922,7 +1047,9 @@ export default function ServicesPage() {
         <section className="services-section" id="services">
           <div className="services-inner">
             <Reveal className="services-header">
+              {/* Tenor Sans tag */}
               <div className="section-tag">What We Offer</div>
+              {/* Playfair Display Bold H2 */}
               <h2 className="section-title">
                 Our <em>Services</em>
               </h2>
@@ -932,19 +1059,22 @@ export default function ServicesPage() {
               {services.map((svc, i) => (
                 <Reveal key={svc.id} delay={i * 0.08}>
                   <div className={`svc-card ${i % 2 === 1 ? "reverse" : ""}`}>
-                    {/* Visual / icon panel */}
                     <div className="svc-visual">
+                      {/* DM Serif Display decorative num */}
                       <div className="svc-visual-num">{svc.num}</div>
                       <div className="svc-icon-wrap">
                         <svc.Icon size={40} strokeWidth={1.2} />
                       </div>
                     </div>
  
-                    {/* Text panel */}
                     <div className="svc-body">
+                      {/* DM Serif Display faded number */}
                       <div className="svc-num">{svc.num}</div>
+                      {/* Playfair Display Bold 700 */}
                       <h3 className="svc-title">{svc.title}</h3>
+                      {/* Outfit Medium caps */}
                       <div className="svc-subtitle">{svc.subtitle}</div>
+                      {/* Outfit Regular */}
                       <p className="svc-desc">{svc.description}</p>
                       <div className="svc-features">
                         {svc.features.map((f) => (
@@ -954,6 +1084,7 @@ export default function ServicesPage() {
                           </div>
                         ))}
                       </div>
+                      {/* Tenor Sans link */}
                       <Link href={`/contact?service=${svc.id}`} className="svc-link">
                         Enquire Now <ArrowRight size={13} />
                       </Link>
@@ -970,10 +1101,13 @@ export default function ServicesPage() {
           <div className="expertise-bg" />
           <div className="expertise-inner">
             <Reveal className="expertise-text">
+              {/* Tenor Sans tag */}
               <div className="section-tag">Our Story</div>
+              {/* Playfair Display Bold H2 */}
               <h2 className="section-title" style={{ marginBottom: 28 }}>
                 Crafting Spaces<br /><em>with Natural Stone</em>
               </h2>
+              {/* Outfit Regular paragraphs */}
               <p>
                 With over 25 years of experience, Dayanand Marbles has established itself
                 as a trusted name for premium marble, granite, and tiles. Our journey began
@@ -999,7 +1133,9 @@ export default function ServicesPage() {
                   key={s.label}
                   style={{ animationDelay: `${i}s` }}
                 >
+                  {/* DM Serif Display */}
                   <div className="exp-badge-val">{s.value}</div>
+                  {/* Outfit Medium caps */}
                   <div className="exp-badge-label">{s.label}</div>
                 </div>
               ))}
@@ -1011,7 +1147,9 @@ export default function ServicesPage() {
         <section className="why-section">
           <div className="why-inner">
             <Reveal className="why-header">
+              {/* Tenor Sans tag (stone color on dark bg) */}
               <div className="section-tag">Our Edge</div>
+              {/* Playfair Display Bold H2 (white on dark) */}
               <h2 className="section-title">
                 The Dayanand <em>Difference</em>
               </h2>
@@ -1024,6 +1162,7 @@ export default function ServicesPage() {
                     <div className="why-icon">
                       <CheckCircle2 size={16} color="#fff" />
                     </div>
+                    {/* Outfit Regular */}
                     <span className="why-label">{item}</span>
                   </div>
                 </Reveal>
@@ -1036,20 +1175,14 @@ export default function ServicesPage() {
         <section className="process-section">
           <div className="process-inner">
             <Reveal className="process-header">
+              {/* Tenor Sans tag */}
               <div className="section-tag">How It Works</div>
+              {/* Playfair Display Bold H2 */}
               <h2 className="section-title">
                 Your Journey to <em>Premium Stone</em>
               </h2>
-              <p
-                style={{
-                  marginTop: 16,
-                  fontSize: 15,
-                  lineHeight: 1.75,
-                  color: "var(--muted)",
-                  maxWidth: 520,
-                  margin: "16px auto 0",
-                }}
-              >
+              {/* Outfit Regular subtitle */}
+              <p className="process-subtitle">
                 We've streamlined every step — from first consultation to final
                 installation — making it simple, transparent, and enjoyable.
               </p>
@@ -1061,9 +1194,12 @@ export default function ServicesPage() {
                   <div className="process-card">
                     <div className="process-step-circle">
                       <step.Icon size={26} strokeWidth={1.5} />
+                      {/* Outfit Medium */}
                       <div className="process-step-num">{step.step}</div>
                     </div>
+                    {/* Playfair Display Italic 400 — H3 card title */}
                     <div className="process-title">{step.title}</div>
+                    {/* Outfit Regular */}
                     <div className="process-desc">{step.description}</div>
                   </div>
                 </Reveal>
@@ -1076,17 +1212,21 @@ export default function ServicesPage() {
         <section className="cta-section">
           <div className="cta-bg" />
           <Reveal className="cta-inner">
+            {/* Tenor Sans tag */}
             <div className="section-tag" style={{ justifyContent: "center" }}>
               Ready to Transform Your Space?
             </div>
+            {/* Playfair Display Bold H2 */}
             <h2 className="cta-title">
               Request Your<br /><em>Free Quote Today</em>
             </h2>
+            {/* Outfit Regular */}
             <p className="cta-desc">
               Whether you're renovating your home or planning a large commercial project,
               our team is ready to help you find the perfect stone solution.
             </p>
             <div className="cta-btns">
+              {/* Tenor Sans buttons */}
               <Link href="/contact" className="cta-btn-primary">
                 Get Free Quote <ArrowRight size={15} />
               </Link>
@@ -1095,6 +1235,7 @@ export default function ServicesPage() {
               </Link>
             </div>
             <div className="cta-badges">
+              {/* Outfit Medium caps badges */}
               {["Free Consultation", "No Obligation", "Expert Guidance"].map((b) => (
                 <span className="cta-badge" key={b}>
                   <CheckCircle2 size={14} />

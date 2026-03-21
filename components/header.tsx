@@ -47,10 +47,9 @@ export function Header() {
             height={50}
             priority
           />
-
           <div className="flex flex-col">
-            <span className="font-serif text-xl font-semibold tracking-tight">
-              Dayanand Marbles
+            <span className="font-brand text-xl font-bold tracking-wide">
+              Dayanand <span className="italic font-normal">Marbles</span>
             </span>
           </div>
         </Link>
@@ -61,24 +60,26 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="relative text-base font-medium tracking-wide text-foreground transition-colors hover:text-marble-brown
-              after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0
-              after:bg-marble-brown after:transition-all after:duration-300
-              hover:after:w-full"
+              className="relative font-nav text-sm tracking-widest text-foreground transition-colors hover:text-marble-brown
+            after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0
+            after:bg-marble-brown after:transition-all after:duration-300
+            hover:after:w-full"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        {/* Desktop Button */}
+        {/* ✅ Desktop Get Quote Button → links to /contact */}
         <div className="hidden lg:flex items-center gap-4">
-          <Button
-            variant="outline"
-            className="border-marble-brown text-marble-brown hover:bg-marble-brown hover:text-primary-foreground transition-all"
-          >
-            Get Quote
-          </Button>
+          <Link href="/contact">
+            <Button
+              variant="outline"
+              className="border-marble-brown text-marble-brown hover:bg-marble-brown hover:text-primary-foreground transition-all"
+            >
+              Get Quote
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -106,16 +107,19 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-foreground text-lg font-medium py-2 border-b border-border/50"
+              className="font-nav text-foreground text-lg py-2 border-b border-border/50"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.label}
             </Link>
           ))}
 
-          <Button className="mt-4 bg-marble-brown hover:bg-marble-dark text-primary-foreground">
-            Get Quote
-          </Button>
+          {/* ✅ Mobile Get Quote Button → links to /contact */}
+          <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+            <Button className="mt-4 w-full bg-marble-brown hover:bg-marble-dark text-primary-foreground">
+              Get Quote
+            </Button>
+          </Link>
         </nav>
       </div>
     </header>

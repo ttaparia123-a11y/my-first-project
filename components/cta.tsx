@@ -42,24 +42,34 @@ export function CTA() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
+
+          {/* Badge */}
           <div className="inline-block px-4 py-1.5 bg-marble-brown/10 rounded-full mb-6">
-            <span className="text-sm font-medium text-marble-brown tracking-wide uppercase">
+            <span className="font-nav text-sm text-marble-brown tracking-widest uppercase">
               Get Started Today
             </span>
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground mb-6 text-balance">
-            Ready to Transform Your Space?
+
+          {/* Main Heading */}
+          <h2 className="font-h2 text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
+            Ready to Transform{" "}
+            <span className="italic font-normal text-marble-brown">
+              Your Space?
+            </span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
+
+          {/* Description */}
+          <p className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
             Visit our showroom in Udaipur to explore our extensive collection of premium
             marble, granite, and designer tiles. Our experts are ready to help you find
             the perfect stone for your project.
           </p>
 
+          {/* Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Button
               size="lg"
-              className="bg-white text-black hover:bg-[var(--marble-brown)] hover:text-white px-8 py-6 text-base font-medium border border-black transition-all duration-300 group"
+              className="font-nav bg-white text-black hover:bg-[var(--marble-brown)] hover:text-white px-8 py-6 text-xs tracking-widest uppercase border border-black transition-all duration-300 group"
             >
               Schedule a Visit
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -67,7 +77,7 @@ export function CTA() {
             <Button
               size="lg"
               variant="outline"
-             className="bg-white text-black hover:bg-[var(--marble-brown)] hover:text-white px-8 py-6 text-base font-medium border border-black transition-all duration-300 group"
+              className="font-nav bg-white text-black hover:bg-[var(--marble-brown)] hover:text-white px-8 py-6 text-xs tracking-widest uppercase border border-black transition-all duration-300 group"
             >
               <Phone className="mr-2 w-4 h-4" />
               +91 7891704729
@@ -80,9 +90,12 @@ export function CTA() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <MapPin className="w-5 h-5 text-marble-brown" />
-            <span>amberi pool near skoda showroom ,sukher, udaipur,Rajasthan,313001</span>
+            <MapPin className="w-5 h-5 text-marble-brown shrink-0" />
+            <span className="font-body text-sm">
+              Amberi Pool, Near Skoda Showroom, Sukher, Udaipur, Rajasthan 313001
+            </span>
           </div>
+
         </div>
       </div>
     </section>

@@ -56,6 +56,7 @@ export function About() {
     >
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
+
           {/* Image Side */}
           <div
             className={`relative transition-all duration-1000 ${
@@ -70,17 +71,20 @@ export function About() {
                 className="object-cover"
               />
             </div>
+
             {/* Floating card */}
             <div className="absolute -bottom-8 -right-8 bg-card p-6 rounded-lg shadow-xl max-w-xs">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 bg-marble-brown rounded-full flex items-center justify-center">
-                  <span className="font-serif text-2xl font-bold text-primary-foreground">20+</span>
+                  <span className="font-h1 text-2xl font-normal text-white">
+                    20+
+                  </span>
                 </div>
                 <div>
-                  <div className="font-serif text-lg font-semibold text-foreground">
+                  <div className="font-h2 text-lg font-semibold text-foreground">
                     Years of Trust
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="font-body text-sm text-muted-foreground">
                     Serving Rajasthan since 2004
                   </div>
                 </div>
@@ -94,24 +98,30 @@ export function About() {
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
             }`}
           >
+            {/* Badge */}
             <div className="inline-block px-4 py-1.5 bg-marble-brown/10 rounded-full mb-6">
-              <span className="text-sm font-medium text-marble-brown tracking-wide uppercase">
+              <span className="font-nav text-sm text-marble-brown tracking-widest uppercase">
                 About Us
               </span>
             </div>
-            
-            <h2 className="font-serif text-4xl md:text-5xl font-semibold text-foreground mb-6 leading-tight">
-              Crafting Luxury Spaces with Nature&apos;s Finest Stone
+
+            {/* Section Heading */}
+            <h2 className="font-h2 text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
+              Crafting Luxury Spaces with{" "}
+              <span className="italic font-normal text-marble-brown">
+                Nature&apos;s Finest Stone
+              </span>
             </h2>
-            
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+
+            {/* Paragraphs */}
+            <p className="font-body text-lg text-muted-foreground leading-relaxed mb-8">
               Established in Udaipur, Rajasthan, Dayanand Marbles has been the region&apos;s
               premier destination for premium marble, granite, and designer tiles for over
               two decades. Our commitment to quality and customer satisfaction has made us
               the trusted choice for architects, interior designers, and homeowners alike.
             </p>
 
-            <p className="text-muted-foreground leading-relaxed mb-10">
+            <p className="font-body text-muted-foreground leading-relaxed mb-10">
               From the iconic Italian Carrara to the finest Indian Makrana marble, we source
               only the highest quality stones from quarries around the world. Our expert team
               guides you through every step, from selection to installation, ensuring your
@@ -132,10 +142,10 @@ export function About() {
                     <feature.icon className="w-6 h-6 text-marble-brown" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">
+                    <h3 className="font-h2 text-base font-semibold text-foreground mb-1">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="font-body text-sm text-muted-foreground">
                       {feature.description}
                     </p>
                   </div>
@@ -143,6 +153,7 @@ export function About() {
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </section>

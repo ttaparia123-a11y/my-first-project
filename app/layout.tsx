@@ -1,17 +1,46 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter } from 'next/font/google'
+import {
+  Libre_Baskerville,
+  Tenor_Sans,
+  DM_Serif_Display,
+  Playfair_Display,
+  Outfit,
+} from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const playfair = Playfair_Display({ 
+const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
-  variable: '--font-serif'
-});
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-brand",
+})
 
-const inter = Inter({ 
+const tenorSans = Tenor_Sans({
   subsets: ["latin"],
-  variable: '--font-sans'
-});
+  weight: ["400"],
+  variable: "--font-nav",
+})
+
+const dmSerifDisplay = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-h1",
+})
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-h2",
+})
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  variable: "--font-body",
+})
 
 export const metadata: Metadata = {
   title: 'Dayanand Marbles | Premium Marble & Granite in Udaipur',
@@ -44,7 +73,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
+      <body className={`
+        ${libreBaskerville.variable}
+        ${tenorSans.variable}
+        ${dmSerifDisplay.variable}
+        ${playfairDisplay.variable}
+        ${outfit.variable}
+        antialiased
+      `}>
         {children}
         <Analytics />
       </body>
