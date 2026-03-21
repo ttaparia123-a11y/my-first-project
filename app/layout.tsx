@@ -4,10 +4,12 @@ import {
   Tenor_Sans,
   DM_Serif_Display,
   Playfair_Display,
-  Outfit,
-} from 'next/font/google'
+  Outfit, Geist } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
@@ -72,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={cn("scroll-smooth", "font-sans", geist.variable)}>
       <body className={`
         ${libreBaskerville.variable}
         ${tenorSans.variable}
