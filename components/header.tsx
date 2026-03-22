@@ -103,12 +103,17 @@ export function Header() {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
+       <button
+        className="lg:hidden p-2"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label="Toggle menu"
+        style={{
+        zIndex: 60,
+         position: "relative",
+         color: isMobileMenuOpen ? "#c8a96e" : "inherit",
+         transition: "color 0.3s",
+         }}
+         >
           {isMobileMenuOpen ? (
             <X className="w-6 h-6" />
           ) : (
@@ -117,58 +122,114 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile Navigation */}
-<div
-  className={`lg:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-md border-b border-border transition-all duration-300 ${
-    isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-  }`}
->
-  <nav className="container mx-auto px-6 py-6 flex flex-col gap-2">
-    {navLinks.map((link, index) => (
-      <Link
-        key={link.href}
-        href={link.href}
-        className={`font-nav text-foreground text-lg py-3 border-b border-border/50 flex items-center justify-between
-          transition-all duration-300
-          ${isMobileMenuOpen
-            ? "opacity-100 translate-x-0"
-            : "opacity-0 -translate-x-8"
-          }
-          ${pathname === link.href ? "text-marble-brown font-semibold" : ""}
-        `}
+     {/* Mobile Navigation - Staggered Fullscreen */}
+      <div
+        className="lg:hidden"
         style={{
-          transitionDelay: isMobileMenuOpen ? `${index * 60}ms` : "0ms"
+          position: "fixed",
+          inset: 0,
+          background: "#1a1a1a",
+          zIndex: 40,
+          display: "flex",
+          flexDirection: "column",
+          padding: "100px 30px 40px",
+          transform: isMobileMenuOpen ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 0.4s cubic-bezier(0.77,0,0.18,1)",
         }}
-        onClick={() => setIsMobileMenuOpen(false)}
       >
-        <span>{link.label}</span>
-        {pathname === link.href && (
-          <span className="w-1.5 h-1.5 rounded-full bg-marble-brown" />
-        )}
-      </Link>
-    ))}
+        <nav style={{ display: "flex", flexDirection: "column" }}>
+          {navLinks.map((link, index) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{
+                fontSize: "clamp(28px, 8vw, 40px)",
+                fontWeight: 500,
+                color: pathname === link.href ? "#c8a96e" : "#ffffff",
+                textDecoration: "none",
+                padding: "12px 0",
+                borderBottom: "1px solid rgba(255,255,255,0.1)",
+                display: "flex",
+                alignItems: "center",
+                gap: "14px",
+                opacity: isMobileMenuOpen ? 1 : 0,
+                transform: isMobileMenuOpen ? "translateX(0)" : "translateX(40px)",
+                transition: "opacity 0.35s ease, transform 0.35s ease",
+                transitionDelay: isMobileMenuOpen ? `${0.15 + index * 0.07}s` : "0s",
+              }}
+            >
+              <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.35)" }}>
+                0{index + 1}
+              </span>
+              {link.label}
+              {pathname === link.href && (
+                <span
+                  style={{
+                    marginLeft: "auto",
+                    width: "6px",
+                    height: "6px",
+                    borderRadius: "50%",
+                    background: "#c8a96e",
+                  }}
+                />
+              )}
+            </Link>
+          ))}
+        </nav>
 
-    {/* CTA Button */}
-    <div
-      className={`transition-all duration-300 ${
-        isMobileMenuOpen
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-4"
-      }`}
-      style={{
-        transitionDelay: isMobileMenuOpen
-          ? `${navLinks.length * 60}ms`
-          : "0ms"
-      }}
-    >
-      <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-        <Button className="mt-4 w-full bg-marble-brown hover:bg-marble-dark text-primary-foreground">
-          Get Quote
-        </Button>
-      </Link>
-    </div>
-  </nav>
-</div>
+        {/* Get Quote Button */}
+        <div
+          style={{
+            marginTop: "30px",
+            opacity: isMobileMenuOpen ? 1 : 0,
+            transform: isMobileMenuOpen ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.35s ease, transform 0.35s ease",
+            transitionDelay: isMobileMenuOpen
+              ? `${0.15 + navLinks.length * 0.07}s`
+              : "0s",
+          }}
+        >
+          <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+            <Button
+              style={{
+                width: "100%",
+                background: "#c8a96e",
+                color: "#fff",
+                border: "none",
+                padding: "14px",
+                fontSize: "15px",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+            >
+              Get Quote
+            </Button>
+          </Link>
+        </div>
+
+        {/* Social Links */}
+        <div
+          style={{
+            marginTop: "auto",
+            display: "flex",
+            gap: "20px",
+            opacity: isMobileMenuOpen ? 1 : 0,
+            transform: isMobileMenuOpen ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.35s ease, transform 0.35s ease",
+            transitionDelay: isMobileMenuOpen ? "0.6s" : "0s",
+          }}
+        >
+          {["Instagram", "WhatsApp", "Facebook"].map((s) => (
+            <span
+              key={s}
+              style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)" }}
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
     </header>
   )
 }
