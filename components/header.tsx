@@ -23,12 +23,18 @@ const gooeyItems = navLinks.map((link) => ({
   href: link.href,
 }))
 
+// ✅ CHANGE THESE 3 LINKS TO YOUR PERSONAL ACCOUNTS FOR NOW
+const socialLinks = [
+  { label: "Instagram", href: "https://instagram.com/taparia_tanuj" },
+  { label: "WhatsApp", href: "https://wa.me/91+9351835358" },
+  { label: "Facebook", href: "https://facebook.com/Tanuj Taparia" },
+]
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
-  // sync active pill with current route
   const activeIndex = Math.max(
     navLinks.findIndex((link) => link.href === pathname),
     0
@@ -103,17 +109,18 @@ export function Header() {
           </Link>
         </div>
 
-       <button
-        className="lg:hidden p-2"
-        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        aria-label="Toggle menu"
-        style={{
-        zIndex: 60,
-         position: "relative",
-         color: isMobileMenuOpen ? "#c8a96e" : "inherit",
-         transition: "color 0.3s",
-         }}
-         >
+        {/* Mobile Burger Button */}
+        <button
+          className="lg:hidden p-2"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+          style={{
+            zIndex: 60,
+            position: "relative",
+            color: isMobileMenuOpen ? "#c8a96e" : "inherit",
+            transition: "color 0.3s",
+          }}
+        >
           {isMobileMenuOpen ? (
             <X className="w-6 h-6" />
           ) : (
@@ -122,7 +129,7 @@ export function Header() {
         </button>
       </div>
 
-     {/* Mobile Navigation - Staggered Fullscreen */}
+      {/* Mobile Navigation - Staggered Fullscreen */}
       <div
         className="lg:hidden"
         style={{
@@ -137,6 +144,7 @@ export function Header() {
           transition: "transform 0.4s cubic-bezier(0.77,0,0.18,1)",
         }}
       >
+        {/* Nav Links */}
         <nav style={{ display: "flex", flexDirection: "column" }}>
           {navLinks.map((link, index) => (
             <Link
@@ -220,13 +228,20 @@ export function Header() {
             transitionDelay: isMobileMenuOpen ? "0.6s" : "0s",
           }}
         >
-          {["Instagram", "WhatsApp", "Facebook"].map((s) => (
-            <span
-              key={s}
-              style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)" }}
+          {socialLinks.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontSize: "13px",
+                color: "rgba(255,255,255,0.4)",
+                textDecoration: "none",
+              }}
             >
-              {s}
-            </span>
+              {s.label}
+            </a>
           ))}
         </div>
       </div>
