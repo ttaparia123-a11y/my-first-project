@@ -3,11 +3,13 @@
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import GooeyNav from "./GooeyNav"
 
 const navLinks = [
-  { href: "/", label:"Home" },
+  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/products", label: "Products" },
@@ -16,9 +18,21 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ]
 
+const gooeyItems = navLinks.map((link) => ({
+  label: link.label,
+  href: link.href,
+}))
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  // sync active pill with current route
+  const activeIndex = Math.max(
+    navLinks.findIndex((link) => link.href === pathname),
+    0
+  )
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,23 +68,30 @@ export function Header() {
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="relative font-nav text-sm tracking-widest text-foreground transition-colors hover:text-marble-brown
-            after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0
-            after:bg-marble-brown after:transition-all after:duration-300
-            hover:after:w-full"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Desktop GooeyNav */}
+        <div className="hidden lg:flex items-center justify-center">
+          <div
+            style={{
+              position: "relative",
+              height: "70px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <GooeyNav
+              items={gooeyItems}
+              particleCount={15}
+              particleDistances={[90, 10]}
+              particleR={100}
+              initialActiveIndex={activeIndex}
+              animationTime={600}
+              timeVariance={300}
+              colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+            />
+          </div>
+        </div>
 
-        {/* ✅ Desktop Get Quote Button → links to /contact */}
+        {/* Desktop Get Quote Button */}
         <div className="hidden lg:flex items-center gap-4">
           <Link href="/contact">
             <Button
@@ -97,31 +118,57 @@ export function Header() {
       </div>
 
       {/* Mobile Navigation */}
-      <div
-        className={`lg:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-md border-b border-border transition-all duration-300 ${
-          isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
+<div
+  className={`lg:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-md border-b border-border transition-all duration-300 ${
+    isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+  }`}
+>
+  <nav className="container mx-auto px-6 py-6 flex flex-col gap-2">
+    {navLinks.map((link, index) => (
+      <Link
+        key={link.href}
+        href={link.href}
+        className={`font-nav text-foreground text-lg py-3 border-b border-border/50 flex items-center justify-between
+          transition-all duration-300
+          ${isMobileMenuOpen
+            ? "opacity-100 translate-x-0"
+            : "opacity-0 -translate-x-8"
+          }
+          ${pathname === link.href ? "text-marble-brown font-semibold" : ""}
+        `}
+        style={{
+          transitionDelay: isMobileMenuOpen ? `${index * 60}ms` : "0ms"
+        }}
+        onClick={() => setIsMobileMenuOpen(false)}
       >
-        <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="font-nav text-foreground text-lg py-2 border-b border-border/50"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <span>{link.label}</span>
+        {pathname === link.href && (
+          <span className="w-1.5 h-1.5 rounded-full bg-marble-brown" />
+        )}
+      </Link>
+    ))}
 
-          {/* ✅ Mobile Get Quote Button → links to /contact */}
-          <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-            <Button className="mt-4 w-full bg-marble-brown hover:bg-marble-dark text-primary-foreground">
-              Get Quote
-            </Button>
-          </Link>
-        </nav>
-      </div>
+    {/* CTA Button */}
+    <div
+      className={`transition-all duration-300 ${
+        isMobileMenuOpen
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-4"
+      }`}
+      style={{
+        transitionDelay: isMobileMenuOpen
+          ? `${navLinks.length * 60}ms`
+          : "0ms"
+      }}
+    >
+      <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+        <Button className="mt-4 w-full bg-marble-brown hover:bg-marble-dark text-primary-foreground">
+          Get Quote
+        </Button>
+      </Link>
+    </div>
+  </nav>
+</div>
     </header>
   )
 }
