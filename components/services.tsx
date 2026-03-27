@@ -257,13 +257,16 @@ export function Services() {
                             </span>
                           ))}
                         </div>
+
+                        {/* ✅ UPDATED: Learn More is now a filled button */}
                         <button
                           onClick={() => handleLearnMore(service)}
-                          className="font-nav inline-flex items-center text-sm text-marble-brown tracking-widest uppercase group/btn hover:underline underline-offset-4"
+                          className="font-nav inline-flex items-center gap-2 px-5 py-2.5 bg-marble-brown text-primary-foreground text-xs tracking-widest uppercase rounded-md hover:bg-marble-dark transition-all duration-300 group/btn"
                         >
                           Learn More
-                          <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                          <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                         </button>
+
                       </div>
                     </div>
                   </CardContent>

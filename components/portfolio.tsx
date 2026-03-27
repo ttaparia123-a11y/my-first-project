@@ -8,7 +8,7 @@ const portfolioItems = [
   {
     title: "Luxury Villa Flooring",
     category: "Residential",
-    image: "/images/portfolio-flooring.jpg",
+    image: "/images/luxury villa flooring.jpeg",
     size: "large",
   },
   {

@@ -106,19 +106,21 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex gap-3">
                 <MapPin className="w-5 h-5 text-marble-gold shrink-0 mt-0.5" />
-                <span className="text-primary-foreground/70">
-                  Near Airport Road, Udaipur,
+                 <span className="text-primary-foreground/70">
+                  N.H. 8, Sukher, Udaipur,
+                  <br />
+                  In Front of Skoda Showroom,
                   <br />
                   Rajasthan 313001, India
                 </span>
               </li>
               <li className="flex gap-3">
                 <Phone className="w-5 h-5 text-marble-gold shrink-0" />
-                <span className="text-primary-foreground/70">+91 98765 43210</span>
+                <span className="text-primary-foreground/70">+91 93518 35358</span>
               </li>
               <li className="flex gap-3">
                 <Mail className="w-5 h-5 text-marble-gold shrink-0" />
-                <span className="text-primary-foreground/70">info@dayanandmarbles.com</span>
+                <span className="text-primary-foreground/70">dayanandmarbleindia@gmail.com</span>
               </li>
               <li className="flex gap-3">
                 <Clock className="w-5 h-5 text-marble-gold shrink-0" />

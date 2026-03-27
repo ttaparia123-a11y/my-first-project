@@ -85,7 +85,7 @@ const services = [
     description:
       "Professional marble restoration and polishing services to bring back the original luster of your stone surfaces. We breathe new life into dull, scratched, or stained marble.",
     features: ["Scratch removal", "Stain treatment", "High-gloss finishing", "Protective sealing"],
-    num: "04",
+    num: "03",
   },
 ]
  
@@ -155,7 +155,34 @@ export default function ServicesPage() {
          *   --font-body: 'Outfit', sans-serif;
          * And the Google Fonts import should include all four families.
          */
+.svc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
+  padding: 10px 22px;
+  border-radius: 999px;
+
+  background: var(--dark);
+  color: #fff;
+
+  font-family: var(--font-nav);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  width: fit-content;        /* ✅ IMPORTANT FIX */
+  max-width: fit-content;    /* ✅ prevents stretching */
+
+  transition: all 0.3s ease;
+}
+
+.svc-btn:hover {
+  background: var(--brown);
+  transform: translateY(-2px);
+}
         :root {
           --cream:  #f9f6f1;
           --warm:   #ede9e0;
@@ -291,7 +318,7 @@ export default function ServicesPage() {
           opacity: 0;
           animation: heroFade 0.9s ease 0.6s forwards;
           max-width: 500px;
-          margin: 0 auto 48px;
+          margin: 0 auto 30px;
         }
 
         /* Tenor Sans — CTA button (label style) */
@@ -311,13 +338,14 @@ export default function ServicesPage() {
           transition: background 0.3s, transform 0.2s;
           opacity: 0;
           animation: heroFade 0.9s ease 0.75s forwards;
+           margin-top: -6px;
         }
         .hero-cta:hover { background: var(--brown); transform: translateY(-2px); }
 
         /* Tenor Sans — scroll label */
         .hero-scroll {
           position: absolute;
-          bottom: 32px;
+          bottom: 12px;
           left: 50%;
           transform: translateX(-50%);
           display: flex;
@@ -330,6 +358,7 @@ export default function ServicesPage() {
           letter-spacing: 0.16em;
           text-transform: uppercase;
           animation: bounce 2s infinite;
+          z-index: 20;
         }
 
         /* ─────────────────────────────────────────
@@ -684,18 +713,7 @@ export default function ServicesPage() {
         }
 
         /* DM Serif Display — decorative watermark */
-        .why-section::before {
-          content: 'DM';
-          position: absolute;
-          font-family: var(--font-h1);       /* DM Serif Display */
-          font-size: 420px;
-          font-weight: 400;
-          color: rgba(255,255,255,0.02);
-          top: 50%; left: 50%;
-          transform: translate(-50%, -50%);
-          pointer-events: none;
-          white-space: nowrap;
-        }
+        
         .why-inner {
           position: relative;
           max-width: 1100px;
@@ -1085,8 +1103,9 @@ export default function ServicesPage() {
                         ))}
                       </div>
                       {/* Tenor Sans link */}
-                      <Link href={`/contact?service=${svc.id}`} className="svc-link">
-                        Enquire Now <ArrowRight size={13} />
+                      <Link href={`/contact?service=${svc.id}`} className="svc-btn">
+                      Enquire Now
+                     <ArrowRight size={14} />
                       </Link>
                     </div>
                   </div>
@@ -1230,8 +1249,8 @@ export default function ServicesPage() {
               <Link href="/contact" className="cta-btn-primary">
                 Get Free Quote <ArrowRight size={15} />
               </Link>
-              <Link href="/gallery" className="cta-btn-secondary">
-                View Gallery <ArrowRight size={15} />
+              <Link href="/products" className="cta-btn-secondary">
+                View Products <ArrowRight size={15} />
               </Link>
             </div>
             <div className="cta-badges">

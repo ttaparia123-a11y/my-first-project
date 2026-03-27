@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Link from "next/link" // ✅ FIXED
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Phone, MapPin } from "lucide-react"
 
@@ -31,7 +32,7 @@ export function CTA() {
       ref={sectionRef}
       className="py-24 md:py-32 relative overflow-hidden"
     >
-      {/* Background pattern */}
+      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-marble-cream via-background to-marble-cream/50" />
       <div className="absolute top-0 left-0 w-96 h-96 bg-marble-brown/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-marble-gold/5 rounded-full blur-3xl" />
@@ -42,7 +43,6 @@ export function CTA() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-
           {/* Badge */}
           <div className="inline-block px-4 py-1.5 bg-marble-brown/10 rounded-full mb-6">
             <span className="font-nav text-sm text-marble-brown tracking-widest uppercase">
@@ -50,7 +50,7 @@ export function CTA() {
             </span>
           </div>
 
-          {/* Main Heading */}
+          {/* Heading */}
           <h2 className="font-h2 text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
             Ready to Transform{" "}
             <span className="italic font-normal text-marble-brown">
@@ -67,21 +67,30 @@ export function CTA() {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Button
-              size="lg"
-              className="font-nav bg-white text-black hover:bg-[var(--marble-brown)] hover:text-white px-8 py-6 text-xs tracking-widest uppercase border border-black transition-all duration-300 group"
-            >
-              Schedule a Visit
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="font-nav bg-white text-black hover:bg-[var(--marble-brown)] hover:text-white px-8 py-6 text-xs tracking-widest uppercase border border-black transition-all duration-300 group"
-            >
-              <Phone className="mr-2 w-4 h-4" />
-              +91 7891704729
-            </Button>
+            
+            {/* ✅ Schedule Visit (Link Working) */}
+            <Link href="/contact">
+              <Button
+                size="lg"
+                className="font-nav bg-white text-black hover:bg-[var(--marble-brown)] hover:text-white px-8 py-6 text-xs tracking-widest uppercase border border-black transition-all duration-300 group"
+              >
+                Schedule a Visit
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+
+            {/* ✅ Call Button (Clickable) */}
+            <a href="tel:+917891704729">
+              <Button
+                size="lg"
+                variant="outline"
+                className="font-nav bg-white text-black hover:bg-[var(--marble-brown)] hover:text-white px-8 py-6 text-xs tracking-widest uppercase border border-black transition-all duration-300 group"
+              >
+                <Phone className="mr-2 w-4 h-4" />
+                +91 7891704729
+              </Button>
+            </a>
+
           </div>
 
           {/* Location */}
@@ -92,7 +101,7 @@ export function CTA() {
           >
             <MapPin className="w-5 h-5 text-marble-brown shrink-0" />
             <span className="font-body text-sm">
-              Amberi Pool, Near Skoda Showroom, Sukher, Udaipur, Rajasthan 313001
+             N.H. 8, Sukher, Udaipur, In Front of Skoda Showroom, Rajasthan 313001
             </span>
           </div>
 

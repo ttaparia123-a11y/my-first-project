@@ -26,8 +26,8 @@ const gooeyItems = navLinks.map((link) => ({
 // ✅ CHANGE THESE 3 LINKS TO YOUR PERSONAL ACCOUNTS FOR NOW
 const socialLinks = [
   { label: "Instagram", href: "https://instagram.com/taparia_tanuj" },
-  { label: "WhatsApp", href: "https://wa.me/91+9351835358" },
-  { label: "Facebook", href: "https://facebook.com/Tanuj Taparia" },
+  { label: "WhatsApp", href: "https://wa.me/919351835358" },
+  { label: "Facebook", href: "https://www.facebook.com/TanujTaparia" },
 ]
 
 export function Header() {

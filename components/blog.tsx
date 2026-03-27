@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowRight, Calendar } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
 const blogPosts = [
   {
     title: "How to Choose the Perfect Marble for Your Home",
+    slug: "choose-perfect-marble",
     excerpt:
       "A comprehensive guide to selecting the right marble type, color, and finish for different areas of your home.",
     image: "/images/italian-marble.jpg",
@@ -16,6 +18,7 @@ const blogPosts = [
   },
   {
     title: "Italian vs Indian Marble: A Detailed Comparison",
+    slug: "italian-vs-indian-marble",
     excerpt:
       "Understanding the differences between Italian and Indian marble to make an informed decision for your project.",
     image: "/images/indian-marble.jpg",
@@ -24,6 +27,7 @@ const blogPosts = [
   },
   {
     title: "Marble Care: Tips to Maintain Your Stone Surfaces",
+    slug: "marble-care-tips",
     excerpt:
       "Essential maintenance tips to keep your marble floors and countertops looking pristine for years to come.",
     image: "/images/portfolio-flooring.jpg",
@@ -82,22 +86,26 @@ export function Blog() {
             </p>
           </div>
 
-          <button className="font-nav self-start md:self-auto inline-flex items-center text-sm text-marble-brown tracking-widest uppercase group">
+          <Link
+            href="/blog"
+            className="font-nav self-start md:self-auto inline-flex items-center text-sm text-marble-brown tracking-widest uppercase group"
+          >
             View All Articles
             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
         </div>
 
         {/* Blog Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post, index) => (
             <Card
-              key={post.title}
+              key={post.slug}
               className={`group bg-card border-border/50 hover:border-marble-brown/30 hover:shadow-xl overflow-hidden transition-all duration-500 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
+              {/* Image */}
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
                   src={post.image}
@@ -112,6 +120,7 @@ export function Blog() {
                 </div>
               </div>
 
+              {/* Content */}
               <CardContent className="p-6">
                 <div className="font-nav flex items-center gap-2 text-xs text-muted-foreground tracking-wider uppercase mb-3">
                   <Calendar className="w-4 h-4" />
@@ -122,14 +131,22 @@ export function Blog() {
                   {post.title}
                 </h3>
 
-                <p className="font-body text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-4">
+                <p className="font-body text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-5">
                   {post.excerpt}
                 </p>
 
-                <button className="font-nav inline-flex items-center text-marble-brown text-xs tracking-widest uppercase group/btn">
+                {/* ✅ Updated Read More Button */}
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="font-nav inline-flex items-center justify-center px-5 py-2.5 
+                             text-xs tracking-widest uppercase 
+                             border border-marble-brown text-marble-brown 
+                             rounded-full transition-all duration-300 
+                             hover:bg-marble-brown hover:text-white hover:shadow-md group/btn"
+                >
                   Read More
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                </Link>
               </CardContent>
             </Card>
           ))}

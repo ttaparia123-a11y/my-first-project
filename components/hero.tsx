@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Play } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false)
@@ -25,7 +25,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-marble.jpg"
-          alt="Premium marble texture"
+          alt="Marble slabs and natural stone in Udaipur showroom"
           fill
           className="object-cover"
           priority
@@ -59,25 +59,29 @@ export function Hero() {
 
           {/* Main Heading */}
           <h1
-            className={`font-h1 text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal leading-tight mb-6 transition-all duration-1000 delay-200 ${
+            className={`font-h1 text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal leading-tight mb-6 transition-all duration-1000 delay-200 ${
               isVisible
                 ? "opacity-100 translate-y-0 blur-0"
                 : "opacity-0 translate-y-8 blur-sm"
             }`}
           >
-            <span className="text-foreground">Timeless Elegance in</span>
-            <br />
-            <span className="text-marble-brown italic">Natural Stone</span>
+            <span className="text-foreground">
+              Premium Marble & Granite Supplier in Udaipur
+            </span>
           </h1>
 
           {/* Tagline */}
           <p
-            className={`font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-1000 delay-400 ${
+            className={`font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed transition-all duration-1000 delay-400 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Premium marble, granite, and designer tiles from Udaipur&apos;s most trusted
-            supplier. Transform your spaces with the finest natural stone.
+            Makrana Marble, Italian Marble & Granite for Homes, Builders & Commercial Projects
+          </p>
+
+          {/* Trust Line */}
+          <p className="font-body text-sm text-muted-foreground mb-10">
+            Trusted by 5000+ Projects • 20+ Years Experience
           </p>
 
           {/* CTA Buttons */}
@@ -86,29 +90,28 @@ export function Hero() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            {/* ✅ View Products → links to /products page */}
-            <Link href="/products">
+            {/* PRIMARY CTA */}
+            <Link href="/contact">
               <Button
                 size="lg"
-                className="bg-white text-black hover:bg-[var(--marble-brown)] hover:text-white px-8 py-6 text-base font-medium border border-black transition-all duration-300 group"
+                className="bg-[var(--marble-brown)] text-white hover:bg-black px-8 py-6 text-base font-medium transition-all duration-300 group"
               >
-                View Products
+                Get Free Quote
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
 
-            {/* ✅ View Our Portfolio → links to /portfolio page */}
-            <Link href="/portfolio">
+            {/* SECONDARY CTA */}
+            <Link href="/products">
               <Button
                 size="lg"
                 variant="outline"
                 className="bg-white text-black border border-black hover:bg-[var(--marble-brown)] hover:text-white px-8 py-6 text-base font-medium transition-all duration-300 group"
               >
-                <Play className="mr-2 w-4 h-4" />
-                View Our Portfolio
+                View Products
               </Button>
             </Link>
-          </div>
+          </div> {/* ✅ FIXED: properly closed CTA div */}
 
           {/* Stats */}
           <div

@@ -16,6 +16,7 @@
     "framer-motion": "^12.36.0",
     "lucide-react": "^0.468.0",
     "next": "^15.2.4",
+    "nodemailer": "^8.0.4",
     "pnpm": "^10.32.1",
     "radix-ui": "^1.4.3",
     "react": "^19.0.0",

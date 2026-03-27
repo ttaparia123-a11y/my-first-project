@@ -207,45 +207,47 @@ export default function AboutPage() {
           margin-bottom: 28px;
         }
         .hero-desc {
-          font-family: var(--font-body);
-          font-size: 15px;
-          line-height: 1.8;
-          color: var(--text);
-          max-width: 480px;
-          margin: 0 auto 48px;
-        }
-        .hero-cta {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          background: var(--dark);
-          color: #fff;
-          padding: 14px 32px;
-          border-radius: 100px;
-          font-family: var(--font-nav);
-          font-size: 11px;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          text-decoration: none;
-          transition: background 0.3s, transform 0.2s;
-        }
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  max-width: 480px;
+  margin: 0 auto 30px; /* 👈 reduced from 48px */
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--dark);
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-family: var(--font-nav);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: -10px; /* 👈 slight upward shift */
+}
         .hero-cta:hover { background: var(--brown); transform: translateY(-2px); }
         .hero-scroll {
           position: absolute;
-          bottom: 32px;
+          bottom: 16px;
           left: 50%;
           transform: translateX(-50%);
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 6px;
+          gap: 10px;
           color: var(--muted);
           font-family: var(--font-nav);
           font-size: 10px;
           letter-spacing: 0.16em;
           text-transform: uppercase;
           animation: bounce 2.2s infinite;
-          z-index: 10;
+          z-index: 20;
         }
 
         .stats-bar { background: var(--dark); padding: 28px 0; }
@@ -433,7 +435,7 @@ export default function AboutPage() {
           overflow: hidden;
         }
         .why-section::before {
-          content: 'DM';
+          content: '';
           position: absolute;
           font-family: var(--font-h1);
           font-size: 420px;

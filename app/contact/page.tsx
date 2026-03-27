@@ -64,22 +64,22 @@ const contactInfo = [
   {
     Icon: MapPin,
     title: "Visit Our Showroom",
-    lines: ["Dayanand Marbles,", "Near Marble Market, Udaipur,", "Rajasthan — 313001"],
+    lines: ["N.H. 8, Sukher, Udaipur, In Front of Skoda Showroom, Rajasthan 313001"],
   },
   {
     Icon: Phone,
     title: "Call Us",
-    lines: ["+91 98765 43210", "+91 94140 00000"],
+    lines: ["+91 9351835358", "+91 7891704729"],
   },
   {
     Icon: Mail,
     title: "Email Us",
-    lines: ["info@dayanandmarbles.com", "sales@dayanandmarbles.com"],
+    lines: ["dayanandmarbleindia@gmail.com"],
   },
   {
     Icon: Clock,
     title: "Working Hours",
-    lines: ["Mon – Sat: 9:00 AM – 7:00 PM", "Sunday: 10:00 AM – 4:00 PM"],
+    lines: ["Mon – Sat: 9:00 AM – 7:00 PM", "Sunday: 10:00 AM – 5:00 PM"],
   },
 ]
 
@@ -117,12 +117,34 @@ export default function ContactPage() {
     setFormState(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSending(true)
-    setTimeout(() => { setSending(false); setSubmitted(true) }, 1400)
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  setSending(true)
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formState),
+    })
+
+    const data = await res.json()
+
+    if (data.success) {
+      setSubmitted(true)
+      setFormState({ name: "", email: "", phone: "", subject: "", message: "" })
+    } else {
+      alert("Error sending message")
+    }
+  } catch (err) {
+    console.error(err)
+    alert("Something went wrong")
   }
 
+  setSending(false)
+}
   return (
     <>
       <style>{`
