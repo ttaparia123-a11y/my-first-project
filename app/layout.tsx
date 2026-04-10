@@ -4,67 +4,114 @@ import {
   Tenor_Sans,
   DM_Serif_Display,
   Playfair_Display,
-  Outfit, Geist } from 'next/font/google'
+  Outfit,
+  Geist,
+} from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils'
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
 const libreBaskerville = Libre_Baskerville({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-brand",
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-brand',
 })
 
 const tenorSans = Tenor_Sans({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-nav",
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-nav',
 })
 
 const dmSerifDisplay = DM_Serif_Display({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-h1",
+  subsets: ['latin'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  variable: '--font-h1',
 })
 
 const playfairDisplay = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-h2",
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-h2',
 })
 
 const outfit = Outfit({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-body",
+  subsets: ['latin'],
+  weight: ['300', '400', '500'],
+  variable: '--font-body',
 })
 
 export const metadata: Metadata = {
-  title: 'Dayanand Marbles | Premium Marble & Granite in Udaipur',
-  description: 'Dayanand Marbles - Premium marble, granite, and tiles supplier in Udaipur, Rajasthan with over 20 years of experience. Quality stone for luxury interiors.',
-  generator: 'v0.app',
-  keywords: ['marble', 'granite', 'tiles', 'Udaipur', 'Rajasthan', 'Italian marble', 'Indian marble', 'stone supplier'],
-  icons: {
-    icon: [
+  metadataBase: new URL('https://www.dayanandmarbles.com'),
+  title: {
+    default: 'Dayanand Marbles | Premium Marble & Granite in Udaipur',
+    template: '%s | Dayanand Marbles',
+  },
+  description:
+    'Dayanand Marbles — Premium marble, granite, and tiles supplier in Udaipur, Rajasthan with over 20 years of experience. Trusted by 5000+ projects. Call +91 93518 35358.',
+  // ✅ REMOVED: generator: 'v0.app' — never ship this in production
+  keywords: [
+    'marble supplier Udaipur',
+    'granite supplier Rajasthan',
+    'Italian marble Udaipur',
+    'Makrana marble',
+    'Indian marble supplier',
+    'stone supplier Udaipur',
+    'tiles Udaipur',
+    'Dayanand Marbles',
+    'marble polishing Udaipur',
+  ],
+  authors: [{ name: 'Dayanand Marbles', url: 'https://www.dayanandmarbles.com' }],
+  creator: 'Dayanand Marbles',
+  publisher: 'Dayanand Marbles',
+  alternates: {
+  canonical: 'https://www.dayanandmarbles.com',
+   },
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: 'https://www.dayanandmarbles.com',
+    siteName: 'Dayanand Marbles',
+    title: 'Dayanand Marbles | Premium Marble & Granite in Udaipur',
+    description:
+      'Udaipur\'s most trusted marble & granite supplier since 2004. 5000+ projects. Italian marble, Makrana marble, granite & tiles.',
+    images: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/images/og-image.jpg', // create a 1200x630 image for social sharing
+        width: 1200,
+        height: 630,
+        alt: 'Dayanand Marbles — Premium Stone Supplier in Udaipur',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dayanand Marbles | Premium Marble & Granite in Udaipur',
+    description:
+      'Udaipur\'s most trusted marble & granite supplier since 2004. 5000+ projects completed.',
+    images: ['/images/og-image.jpg'],
+  },
+  icons: {
+    icon: [
+      { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
+      { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
     apple: '/apple-icon.png',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+    },
   },
 }
 
@@ -74,15 +121,20 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={cn("scroll-smooth", "font-sans", geist.variable)}>
-      <body className={`
-        ${libreBaskerville.variable}
-        ${tenorSans.variable}
-        ${dmSerifDisplay.variable}
-        ${playfairDisplay.variable}
-        ${outfit.variable}
-        antialiased
-      `}>
+    <html
+      lang="en"
+      className={cn('scroll-smooth', 'font-sans', geist.variable)}
+    >
+      <body
+        className={`
+          ${libreBaskerville.variable}
+          ${tenorSans.variable}
+          ${dmSerifDisplay.variable}
+          ${playfairDisplay.variable}
+          ${outfit.variable}
+          antialiased
+        `}
+      >
         {children}
         <Analytics />
       </body>

@@ -76,12 +76,12 @@ export function Hero() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Makrana Marble, Italian Marble & Granite for Homes, Builders & Commercial Projects
+            Indian Marble, Italian Marble & Granite for Homes, Builders & Dealers
           </p>
 
           {/* Trust Line */}
           <p className="font-body text-sm text-muted-foreground mb-10">
-            Trusted by 5000+ Projects • 20+ Years Experience
+            1000+ Happy Customers • 20+ Years Experience
           </p>
 
           {/* CTA Buttons */}
@@ -129,15 +129,15 @@ export function Hero() {
             </div>
             <div className="text-center">
               <div className="font-h1 text-4xl md:text-5xl font-normal text-marble-brown mb-2">
-                5000+
+                1000+ 
               </div>
               <div className="font-nav text-sm text-muted-foreground uppercase tracking-widest">
-                Projects Completed
+                 Happy Customers
               </div>
             </div>
             <div className="text-center">
               <div className="font-h1 text-4xl md:text-5xl font-normal text-marble-brown mb-2">
-                100+
+                50+
               </div>
               <div className="font-nav text-sm text-muted-foreground uppercase tracking-widest">
                 Stone Varieties

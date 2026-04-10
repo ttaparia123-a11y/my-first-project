@@ -60,7 +60,6 @@ function Reveal({
 const stats = [
   { value: "2004",  label: "Founded" },
   { value: "20+",   label: "Years of Trust" },
-  { value: "5000+", label: "Projects Done" },
   { value: "1000+", label: "Happy Clients" },
 ]
 
@@ -68,7 +67,7 @@ const missionPoints = [
   "Source only the finest quality stones",
   "Maintain competitive and transparent pricing",
   "Provide expert consultation for every project",
-  "Ensure timely delivery and installation support",
+ 
 ]
 
 const visionPoints = [
@@ -84,7 +83,7 @@ const trustFactors = [
   { Icon: Shield,       title: "Authenticity Guaranteed", desc: "We guarantee the authenticity of all our products with proper documentation and certification." },
   { Icon: Truck,        title: "Reliable Delivery",       desc: "Timely delivery across India with careful handling to ensure your stone arrives in perfect condition." },
   { Icon: Star,         title: "Competitive Pricing",     desc: "Direct sourcing from quarries allows us to offer premium quality at the most competitive prices." },
-  { Icon: CheckCircle2, title: "After-Sales Support",     desc: "Our commitment doesn't end at sale — we provide installation guidance and maintenance support." },
+  
 ]
 
 const showroomPerks = [
@@ -757,20 +756,10 @@ export default function AboutPage() {
                 A Legacy Built<br /><em>on Stone</em>
               </h2>
               <p>
-                What began as a small marble trading business in the heart of Udaipur has grown into
-                one of Rajasthan's most trusted names in premium natural stone. Founded by
-                Shri Dayanand Ji in 2004, our company was built on a simple philosophy: quality
-                without compromise.
+                What began as a small marble trading business in Udaipur has grown into one of Rajasthan's trusted names in natural stone. Founded by Shri Jagdish Prasad Taparia, our company was built on a simple belief — provide good quality stone at honest prices.
+               Located in Udaipur, Rajasthan, we source Indian and Italian marble and granite from trusted parties and supply them to dealers and local customers. We deliver directly to your location across Udaipur, Rajasthan, Maharashtra and nearby states.
               </p>
-              <p>
-                Located in the marble capital of India, we have direct access to the finest quarries
-                in Rajasthan, ensuring that every piece we offer meets the highest standards of
-                quality and craftsmanship.
-              </p>
-              <p>
-                Today, we serve architects, interior designers, builders, and homeowners across the
-                country, helping them transform their spaces with the timeless beauty of natural stone.
-              </p>
+              
             </Reveal>
           </div>
         </section>
@@ -790,9 +779,7 @@ export default function AboutPage() {
                   <div className="mv-icon-wrap"><Target size={24} /></div>
                   <div className="mv-title">Our Mission</div>
                   <p className="mv-desc">
-                    To provide the finest quality marble, granite, and stone materials that
-                    transform ordinary spaces into extraordinary masterpieces — with exceptional
-                    value, expert guidance, and unmatched service.
+                    Our mission is to provide quality marble and granite at honest prices, with reliable delivery and helpful guidance so every customer finds the right stone for their needs.
                   </p>
                   <div className="mv-list">
                     {missionPoints.map((pt) => (
@@ -809,9 +796,7 @@ export default function AboutPage() {
                   <div className="mv-icon-wrap"><Eye size={24} /></div>
                   <div className="mv-title">Our Vision</div>
                   <p className="mv-desc">
-                    To be the most trusted and preferred natural stone supplier in India, known
-                    for uncompromising quality, innovative solutions, and a commitment to
-                    sustainable practices.
+                    To be the most trusted marble and granite supplier in Udaipur and Rajasthan, known for quality, fair pricing and long-term relationships with our dealers and customers.
                   </p>
                   <div className="mv-list">
                     {visionPoints.map((pt) => (
@@ -859,9 +844,7 @@ export default function AboutPage() {
                 Experience Our <em>Showroom</em>
               </h2>
               <p>
-                Step into our state-of-the-art showroom in Udaipur and explore our extensive
-                collection of premium marbles, granites, and designer tiles. Our expert team
-                is ready to guide you through our curated selection.
+                Come visit our shop in Udaipur and see our collection of marble and granite in person. Our team is happy to help you choose the right stone for your project.
               </p>
               <div className="showroom-list">
                 {showroomPerks.map((perk) => (

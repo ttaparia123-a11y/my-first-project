@@ -16,14 +16,14 @@ const reasons = [
     title: "Wide Variety",
     description:
       "From classic whites to exotic greens, our collection spans hundreds of colors, patterns, and finishes.",
-    highlights: ["200+ Stone Options", "Rare Collections", "Custom Sourcing"],
+    highlights: ["50+ Stone Options", "Rare Collections", "Custom Sourcing"],
   },
   {
     icon: Clock,
     title: "Trusted Experience",
     description:
       "With over 20 years in the industry, we bring expertise and reliability to every project.",
-    highlights: ["20+ Years", "5000+ Projects", "Expert Guidance"],
+    highlights: ["20+ Years", "1000+ Happy Customers", "Expert Guidance"],
   },
   {
     icon: Heart,

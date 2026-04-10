@@ -12,7 +12,7 @@ const services = [
     title: "Marble Supply",
     tagline: "Timeless beauty, sourced from the world's finest quarries.",
     description:
-      "We supply premium Italian and Indian marble slabs suitable for flooring, walls, countertops, staircases, and architectural elements. With over 20 years in the industry, Dayanand Marbles is Udaipur's most trusted source for natural marble in a wide variety of colors, veining patterns, and finishes.",
+      "We supply premium Indian and Italian marble slabs in a wide range of colors and finishes. Different marble varieties suit different spaces — some look stunning on flooring, others are perfect for staircases, feature walls, or entrance areas. Our team helps you choose the right marble for the right place, and delivers it directly to your location.",
     features: ["Italian Marble", "Indian Marble", "Custom Cutting", "Worldwide Sourcing"],
     benefits: [
       { title: "Vast Selection", desc: "Over 100+ marble varieties from Carrara, Statuario, Makrana, and more." },
@@ -26,7 +26,7 @@ const services = [
     title: "Granite Supply",
     tagline: "Durable, elegant, and built to last a lifetime.",
     description:
-      "Our granite collection offers high-quality natural stone ideal for kitchen countertops, bathroom vanities, outdoor applications, and commercial flooring. Known for its hardness and heat resistance, granite is the perfect blend of beauty and functionality for any space.",
+      "Our granite collection offers durable and beautiful natural stone slabs in multiple colors and finishes. Granite works exceptionally well for kitchen platforms, bathroom areas, outdoor spaces, and commercial flooring. We supply granite slabs to dealers and local customers with delivery to your doorstep.",
     features: ["Kitchen Countertops", "Commercial Grade", "Heat Resistant", "Multiple Finishes"],
     benefits: [
       { title: "Extremely Durable", desc: "Granite is one of the hardest natural stones, resistant to scratches and wear." },
@@ -49,20 +49,7 @@ const services = [
       { title: "Custom Orders", desc: "We source custom tile designs to match your unique interior vision." },
     ],
   },
-  {
-    icon: Sparkles,
-    title: "Marble Polishing",
-    tagline: "Restore the original brilliance of your stone surfaces.",
-    description:
-      "Over time, marble and stone surfaces can lose their shine due to foot traffic, scratches, and staining. Our professional marble polishing and restoration service brings back the original luster of your floors, countertops, and walls using industry-grade equipment and techniques.",
-    features: ["Deep Cleaning", "Scratch Removal", "Sealing", "Maintenance"],
-    benefits: [
-      { title: "Deep Cleaning", desc: "Removes embedded dirt, stains, and discoloration from stone pores." },
-      { title: "Scratch Removal", desc: "Honing and grinding techniques eliminate surface scratches and etching." },
-      { title: "Protective Sealing", desc: "Sealant application protects against future stains and moisture." },
-      { title: "Ongoing Maintenance", desc: "Annual maintenance plans to keep your stone looking brand new." },
-    ],
-  },
+  
 ]
 
 type Service = typeof services[0]
@@ -220,8 +207,7 @@ export function Services() {
                 <span className="italic font-normal text-marble-brown">Stone Solutions</span>
               </h2>
               <p className="font-body text-lg text-muted-foreground">
-                From sourcing the finest natural stones to professional installation and
-                maintenance, we offer end-to-end services for all your stone needs.
+              From sourcing the finest marble & granite to delivering them at your doorstep, we make the buying process simple and reliable.
               </p>
             </div>
 

@@ -64,7 +64,7 @@ const services = [
     subtitle: "Timeless Elegance",
     description:
       "Premium Italian and Indian marbles sourced from the finest quarries worldwide. From classic Carrara to exotic varieties, we provide the perfect stone for your vision.",
-    features: ["Wide variety of colors & patterns", "Cut-to-size options", "International sourcing", "Quality certification"],
+    features: ["Wide variety of colors & patterns", "Delivery to your location", "Indian & Italian marble available"],
     num: "01",
   },
   {
@@ -74,19 +74,10 @@ const services = [
     subtitle: "Strength & Beauty",
     description:
       "Durable and stunning granite selections for countertops, flooring, and facades. Our collection features rare colors and patterns that transform any space.",
-    features: ["Extreme durability", "Heat resistant", "Multiple finishes available", "Custom fabrication"],
+    features: ["Extreme durability", "Heat resistant", "Multiple finishes available","Delivery to your location" ],
     num: "02",
   },
-  {
-    id: "polishing",
-    Icon: Sparkles,
-    title: "Marble Polishing",
-    subtitle: "Restore & Refresh",
-    description:
-      "Professional marble restoration and polishing services to bring back the original luster of your stone surfaces. We breathe new life into dull, scratched, or stained marble.",
-    features: ["Scratch removal", "Stain treatment", "High-gloss finishing", "Protective sealing"],
-    num: "03",
-  },
+  
 ]
  
 const processSteps = [
@@ -111,17 +102,11 @@ const processSteps = [
     description:
       "We handle careful transportation across India. Your stone arrives safely packaged and on schedule, every time.",
   },
-  {
-    step: 4,
-    Icon: BadgeCheck,
-    title: "Quality Assurance",
-    description:
-      "Final inspection ensures everything meets our premium standards. We provide care guidelines and full warranty documentation.",
-  },
+  
 ]
  
 const whyUs = [
-  "25+ years of industry expertise",
+  "20+ years of industry expertise",
   "Direct sourcing from premium quarries",
   "Competitive pricing — no middlemen",
   "Expert guidance throughout your project",
@@ -130,9 +115,8 @@ const whyUs = [
 ]
  
 const stats = [
-  { value: "25+", label: "Years of Trust" },
-  { value: "500+", label: "Stone Varieties" },
-  { value: "12", label: "Countries Sourced" },
+  { value: "20+", label: "Years of Trust" },
+  { value: "50+", label: "Stone Varieties" },
   { value: "100%", label: "Quality Assured" },
 ]
  
@@ -1025,7 +1009,7 @@ export default function ServicesPage() {
  
             {/* Playfair Display sub */}
             <p className="hero-sub">
-              Supply · Polishing · Restoration
+              Marble Supply · Granite Supply · Tiles
             </p>
  
             {/* Outfit body */}
@@ -1128,21 +1112,9 @@ export default function ServicesPage() {
               </h2>
               {/* Outfit Regular paragraphs */}
               <p>
-                With over 25 years of experience, Dayanand Marbles has established itself
-                as a trusted name for premium marble, granite, and tiles. Our journey began
-                with a simple mission: to bring the finest natural stones to homes and
-                businesses across India.
+                With over 20 years of experience, Dayanand Marbles is a trusted name in Udaipur for marble and granite supply. We source quality Indian and Italian marble and granite from trusted parties across India and supply them to dealers and local customers. We deliver goods directly to your location across Udaipur, Rajasthan, Maharashtra and nearby states.
               </p>
-              <p>
-                We maintain direct relationships with quarries in Italy, Turkey, Brazil,
-                and across Rajasthan — ensuring our clients receive the highest quality
-                stones at competitive prices. Every slab is hand-selected for its unique
-                character and superior quality.
-              </p>
-              <p>
-                Our stone experts guide clients through every step — from understanding
-                stone properties to choosing the perfect finish for their application.
-              </p>
+              
             </Reveal>
  
             <Reveal delay={0.15} className="expertise-badges">

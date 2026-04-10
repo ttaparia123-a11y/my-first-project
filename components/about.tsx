@@ -115,18 +115,12 @@ export function About() {
 
             {/* Paragraphs */}
             <p className="font-body text-lg text-muted-foreground leading-relaxed mb-8">
-              Established in Udaipur, Rajasthan, Dayanand Marbles has been the region&apos;s
-              premier destination for premium marble, granite, and designer tiles for over
-              two decades. Our commitment to quality and customer satisfaction has made us
-              the trusted choice for architects, interior designers, and homeowners alike.
+              Dayanand Marbles is a trusted name in Udaipur, Rajasthan for premium marble and granite slabs.
+               With over 20 years in the business, we source quality Indian and Italian marble and granite from reliable parties and supply them to dealers, builders, and local customers across the region. 
+               We deliver goods directly to your location, making the process simple and hassle-free. Whether you are building a new home or running a construction business, 
+              we are here to help you get the right stone at the right price.
             </p>
 
-            <p className="font-body text-muted-foreground leading-relaxed mb-10">
-              From the iconic Italian Carrara to the finest Indian Makrana marble, we source
-              only the highest quality stones from quarries around the world. Our expert team
-              guides you through every step, from selection to installation, ensuring your
-              vision becomes reality.
-            </p>
 
             {/* Features Grid */}
             <div className="grid sm:grid-cols-2 gap-6">
