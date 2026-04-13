@@ -668,7 +668,6 @@ export default function ContactPage() {
             ))}
           </div>
         </div>
-
         {/* ── CONTACT INFO + FORM ── */}
         <section className="contact-section" id="contact">
           <div className="contact-wrap">
