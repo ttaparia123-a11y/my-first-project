@@ -87,7 +87,7 @@ const trustFactors = [
 ]
 
 const showroomPerks = [
-  "Over 100+ varieties of marble and granite on display",
+  "Over 50+ varieties of marble and granite on display",
   "Expert consultation with our stone specialists",
   "See and feel the quality before you buy",
   "Virtual room visualisation available",

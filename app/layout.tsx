@@ -54,7 +54,6 @@ export const metadata: Metadata = {
   },
   description:
     'Dayanand Marbles — Premium marble, granite, and tiles supplier in Udaipur, Rajasthan with over 20 years of experience. Trusted by 5000+ projects. Call +91 93518 35358.',
-  // ✅ REMOVED: generator: 'v0.app' — never ship this in production
   keywords: [
     'marble supplier Udaipur',
     'granite supplier Rajasthan',
@@ -70,8 +69,8 @@ export const metadata: Metadata = {
   creator: 'Dayanand Marbles',
   publisher: 'Dayanand Marbles',
   alternates: {
-  canonical: 'https://www.dayanandmarbles.com',
-   },
+    canonical: 'https://www.dayanandmarbles.com',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_IN',
@@ -82,7 +81,7 @@ export const metadata: Metadata = {
       'Udaipur\'s most trusted marble & granite supplier since 2004. 5000+ projects. Italian marble, Makrana marble, granite & tiles.',
     images: [
       {
-        url: '/images/og-image.jpg', // create a 1200x630 image for social sharing
+        url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Dayanand Marbles — Premium Stone Supplier in Udaipur',
@@ -125,6 +124,14 @@ export default function RootLayout({
       lang="en"
       className={cn('scroll-smooth', 'font-sans', geist.variable)}
     >
+      {/* ✅ Code 1 — GTM Script in <head> */}
+      <head>
+  <script
+    dangerouslySetInnerHTML={{
+      __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TW23D8WM');`
+    }}
+  />
+</head>
       <body
         className={`
           ${libreBaskerville.variable}
@@ -135,6 +142,16 @@ export default function RootLayout({
           antialiased
         `}
       >
+        {/* ✅ Code 2 — GTM noscript immediately after <body> opens */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TW23D8WM"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+
         {children}
         <Analytics />
       </body>
