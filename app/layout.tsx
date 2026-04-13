@@ -72,10 +72,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.dayanandmarbles.com',
   },
 
-  // ✅ Google Search Console Verification
-  verification: {
-  google: 'KOUKa_kdmV1W1x_jwYsOjTH7MBwdjcAVm-svUU2gZBU',
-},
+  
 
   openGraph: {
     type: 'website',
@@ -137,6 +134,7 @@ export default function RootLayout({
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TW23D8WM');`
           }}
         />
+        <meta name="google-site-verification" content="KOUKa_kdmV1W1x_jwYsOjTH7MBwdjcAVm-svUU2gZBU" />
       </head>
       <body
         className={`
