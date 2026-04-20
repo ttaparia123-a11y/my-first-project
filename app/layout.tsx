@@ -10,6 +10,7 @@ import {
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { cn } from '@/lib/utils'
+import WhatsAppButton from '@/components/WhatsappButton.jsx'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -156,8 +157,9 @@ export default function RootLayout({
           />
         </noscript>
 
-        {children}
+       {children}
         <Analytics />
+        <WhatsAppButton />
       </body>
     </html>
   )

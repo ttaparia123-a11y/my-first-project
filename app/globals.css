@@ -147,6 +147,30 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 }
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 25px;
+  z-index: 9999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.15);
+}
+
+.whatsapp-float img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
 
 @layer base {
   * {
