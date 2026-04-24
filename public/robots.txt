@@ -1,11 +1,9 @@
+# *
 User-agent: *
 Allow: /
-Allow: /*.js$
-Allow: /*.css$
 
+# Host
+Host: https://www.dayanandmarbles.com
+
+# Sitemaps
 Sitemap: https://www.dayanandmarbles.com/sitemap.xml
-
-Disallow: /api/
-Disallow: /admin/
-Disallow: /_next/
-Disallow: /private/

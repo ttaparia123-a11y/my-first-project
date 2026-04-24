@@ -27,7 +27,7 @@ export default function WhatsAppButton() {
           src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
           alt="WhatsApp"
           width={60}
-          height={60}
+          height={80}
           style={{ borderRadius: '50%' }}
         />
       </Link>

@@ -245,13 +245,13 @@ export function Services() {
                         </div>
 
                         {/* ✅ UPDATED: Learn More is now a filled button */}
-                        <button
-                          onClick={() => handleLearnMore(service)}
-                          className="font-nav inline-flex items-center gap-2 px-5 py-2.5 bg-marble-brown text-primary-foreground text-xs tracking-widest uppercase rounded-md hover:bg-marble-dark transition-all duration-300 group/btn"
-                        >
-                          Learn More
-                          <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                        </button>
+                        <Link
+  href={`/services/${service.title.toLowerCase().replace(/ /g, "-")}`}
+  className="font-nav inline-flex items-center gap-2 px-5 py-2.5 bg-marble-brown text-primary-foreground text-xs tracking-widest uppercase rounded-md hover:bg-marble-dark transition-all duration-300 group/btn"
+>
+  Learn More
+  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+</Link>
 
                       </div>
                     </div>

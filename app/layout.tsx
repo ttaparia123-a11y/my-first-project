@@ -64,7 +64,6 @@ export const metadata: Metadata = {
     'stone supplier Udaipur',
     'tiles Udaipur',
     'Dayanand Marbles',
-    'marble polishing Udaipur',
   ],
   authors: [{ name: 'Dayanand Marbles', url: 'https://www.dayanandmarbles.com' }],
   creator: 'Dayanand Marbles',
@@ -72,9 +71,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.dayanandmarbles.com',
   },
-
   
-
   openGraph: {
     type: 'website',
     locale: 'en_IN',
