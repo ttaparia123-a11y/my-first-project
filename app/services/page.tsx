@@ -15,6 +15,7 @@ import {
   Truck,
   BadgeCheck,
   ChevronDown,
+  Grid3x3,
 } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
  
@@ -77,7 +78,21 @@ const services = [
     features: ["Extreme durability", "Heat resistant", "Multiple finishes available","Delivery to your location" ],
     num: "02",
   },
-  
+  {
+  id: "tiles",
+  Icon: Grid3x3,
+  title: "Tiles Supply",
+  subtitle: "Style & Versatility",
+  description:
+    "Explore a wide range of high-quality tiles designed to enhance every space. From elegant porcelain and durable ceramic to decorative mosaic patterns, our collection offers the perfect balance of design and functionality for homes and commercial projects.",
+  features: [
+    "Porcelain & Ceramic Tiles",
+    "Mosaic & Designer Patterns",
+    "Indoor & Outdoor Use",
+    "Wide Range of Finishes"
+  ],
+  num: "03",
+}, 
 ]
  
 const processSteps = [

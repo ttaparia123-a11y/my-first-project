@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Layers, Mountain, Grid3X3, Sparkles, ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
+import { Layers, Mountain, Grid3X3, ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -20,6 +20,8 @@ const services = [
       { title: "Quality Assured", desc: "Every slab is inspected for consistency in color, veining, and finish." },
       { title: "Bulk Supply", desc: "Reliable supply for large residential and commercial projects." },
     ],
+    type: "full", // has its own detail page
+    href: "/services/marble-supply",
   },
   {
     icon: Mountain,
@@ -34,25 +36,23 @@ const services = [
       { title: "Commercial Grade", desc: "Suitable for high-traffic commercial spaces and large installations." },
       { title: "Multiple Finishes", desc: "Available in polished, honed, brushed, and leathered finishes." },
     ],
+    type: "full", // has its own detail page
+    href: "/services/granite-supply",
   },
   {
     icon: Grid3X3,
     title: "Tiles Supply",
     tagline: "Designer tiles for every style and every space.",
     description:
-      "From contemporary porcelain to classic ceramic and natural stone mosaic, our tiles collection covers every design aesthetic. Whether you're renovating a bathroom, designing a feature wall, or tiling a large commercial space, we have the perfect tile for your vision.",
-    features: ["Porcelain Tiles", "Ceramic Tiles", "Mosaic Patterns", "Custom Designs"],
-    benefits: [
-      { title: "Wide Range", desc: "Thousands of designs including wood-look, stone-look, and abstract patterns." },
-      { title: "Indoor & Outdoor", desc: "Anti-slip and frost-resistant options available for outdoor use." },
-      { title: "Mosaic Artistry", desc: "Handcrafted mosaic panels for feature walls and decorative elements." },
-      { title: "Custom Orders", desc: "We source custom tile designs to match your unique interior vision." },
-    ],
+      "Looking for tiles to complement your marble or granite? We help you find the perfect tiles through our trusted partner network. Whether it's porcelain, ceramic, or mosaic — tell us your requirement and we'll guide you to the right option and get it arranged for you.",
+    features: ["Porcelain Tiles", "Ceramic Tiles", "Mosaic Patterns", "Partner Network"],
+    benefits: [],
+    type: "enquiry", // no detail page — goes to contact
+    href: "/contact",
   },
-  
 ]
 
-type Service = typeof services[0]
+type Service = (typeof services)[0]
 
 export function Services() {
   const [isVisible, setIsVisible] = useState(false)
@@ -70,19 +70,16 @@ export function Services() {
     return () => observer.disconnect()
   }, [])
 
-  const handleLearnMore = (service: Service) => {
-    setSelectedService(service)
-    setTimeout(() => {
-      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
-    }, 50)
-  }
-
   const handleBack = () => {
     setSelectedService(null)
     setTimeout(() => {
       sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
     }, 50)
   }
+
+  // Separate marble+granite from tiles for layout
+  const mainServices = services.filter((s) => s.type === "full")
+  const enquiryServices = services.filter((s) => s.type === "enquiry")
 
   return (
     <section id="services" ref={sectionRef} className="py-24 md:py-32">
@@ -136,23 +133,27 @@ export function Services() {
             </p>
 
             {/* Benefits */}
-            <h3 className="font-h2 text-2xl font-semibold text-foreground mb-8">
-              What We <span className="italic font-normal text-marble-brown">Offer</span>
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-6 mb-16">
-              {selectedService.benefits.map((benefit) => (
-                <div
-                  key={benefit.title}
-                  className="flex gap-4 p-6 bg-card border border-border/50 rounded-xl hover:border-marble-brown/30 hover:shadow-md transition-all duration-300"
-                >
-                  <CheckCircle2 className="w-5 h-5 text-marble-brown shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-h2 text-base font-semibold text-foreground mb-1">{benefit.title}</h4>
-                    <p className="font-body text-sm text-muted-foreground leading-relaxed">{benefit.desc}</p>
-                  </div>
+            {selectedService.benefits.length > 0 && (
+              <>
+                <h3 className="font-h2 text-2xl font-semibold text-foreground mb-8">
+                  What We <span className="italic font-normal text-marble-brown">Offer</span>
+                </h3>
+                <div className="grid sm:grid-cols-2 gap-6 mb-16">
+                  {selectedService.benefits.map((benefit) => (
+                    <div
+                      key={benefit.title}
+                      className="flex gap-4 p-6 bg-card border border-border/50 rounded-xl hover:border-marble-brown/30 hover:shadow-md transition-all duration-300"
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-marble-brown shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="font-h2 text-base font-semibold text-foreground mb-1">{benefit.title}</h4>
+                        <p className="font-body text-sm text-muted-foreground leading-relaxed">{benefit.desc}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
 
             {/* CTA */}
             <div className="bg-marble-cream/40 border border-border/50 rounded-2xl p-10 text-center">
@@ -207,13 +208,13 @@ export function Services() {
                 <span className="italic font-normal text-marble-brown">Stone Solutions</span>
               </h2>
               <p className="font-body text-lg text-muted-foreground">
-              From sourcing the finest marble & granite to delivering them at your doorstep, we make the buying process simple and reliable.
+                From sourcing the finest marble & granite to delivering them at your doorstep, we make the buying process simple and reliable.
               </p>
             </div>
 
-            {/* Services Grid */}
-            <div className="grid md:grid-cols-2 gap-8">
-              {services.map((service, index) => (
+            {/* ── Row 1: Marble + Granite (2 columns) ── */}
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              {mainServices.map((service, index) => (
                 <Card
                   key={service.title}
                   className={`group bg-card border-border/50 hover:border-marble-brown/30 hover:shadow-xl transition-all duration-500 overflow-hidden ${
@@ -243,22 +244,67 @@ export function Services() {
                             </span>
                           ))}
                         </div>
-
-                        {/* ✅ UPDATED: Learn More is now a filled button */}
+                        {/* Learn More → goes to full detail page */}
                         <Link
-  href={`/services/${service.title.toLowerCase().replace(/ /g, "-")}`}
-  className="font-nav inline-flex items-center gap-2 px-5 py-2.5 bg-marble-brown text-primary-foreground text-xs tracking-widest uppercase rounded-md hover:bg-marble-dark transition-all duration-300 group/btn"
->
-  Learn More
-  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-</Link>
-
+                          href={service.href}
+                          className="font-nav inline-flex items-center gap-2 px-5 py-2.5 bg-marble-brown text-primary-foreground text-xs tracking-widest uppercase rounded-md hover:bg-marble-dark transition-all duration-300 group/btn"
+                        >
+                          Learn More
+                          <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                        </Link>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
+
+            {/* ── Row 2: Tiles — centered, max half width on desktop ── */}
+            <div className="flex justify-start">
+  {enquiryServices.map((service, index) => (
+    <Card
+      key={service.title}
+      className={`group bg-card border-border/50 hover:border-marble-brown/30 hover:shadow-xl transition-all duration-500 overflow-hidden w-full md:w-1/2 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}
+      style={{ transitionDelay: `${(mainServices.length + index) * 150}ms` }}
+    >
+      <CardContent className="p-8">
+        <div className="flex items-start gap-6">
+          <div className="w-14 h-14 bg-marble-cream rounded-lg flex items-center justify-center shrink-0 group-hover:bg-marble-brown transition-colors">
+            <service.icon className="w-7 h-7 text-marble-brown group-hover:text-primary-foreground transition-colors" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-h2 text-2xl font-semibold text-foreground mb-3 group-hover:text-marble-brown transition-colors">
+              {service.title}
+            </h3>
+            <p className="font-body text-muted-foreground leading-relaxed mb-6">
+              {service.description}
+            </p>
+            <div className="flex flex-wrap gap-2 mb-6">
+              {service.features.map((feature) => (
+                <span
+                  key={feature}
+                  className="font-nav px-3 py-1 bg-marble-cream/60 text-xs text-marble-brown rounded-full tracking-wider uppercase"
+                >
+                  {feature}
+                </span>
+              ))}
+            </div>
+
+            <Link
+              href={service.href}
+              className="font-nav inline-flex items-center gap-2 px-5 py-2.5 bg-marble-brown text-primary-foreground text-xs tracking-widest uppercase rounded-md hover:bg-marble-dark transition-all duration-300 group/btn"
+            >
+              Enquire Now
+              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+          </div>
+           </CardContent>
+              </Card>
+            ))}
+              </div>
           </>
         )}
 
