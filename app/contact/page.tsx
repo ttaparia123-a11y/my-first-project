@@ -69,7 +69,7 @@ const contactInfo = [
   {
     Icon: Phone,
     title: "Call Us",
-    lines: ["+91 9351835358", "+91 7891704729"],
+    lines: ["+91 7891704729"],
   },
   {
     Icon: Mail,

@@ -21,7 +21,7 @@ const services = [
       { title: "Bulk Supply", desc: "Reliable supply for large residential and commercial projects." },
     ],
     type: "full", // has its own detail page
-    href: "/services/marble-supply",
+    href: "/services",
   },
   {
     icon: Mountain,
@@ -37,7 +37,7 @@ const services = [
       { title: "Multiple Finishes", desc: "Available in polished, honed, brushed, and leathered finishes." },
     ],
     type: "full", // has its own detail page
-    href: "/services/granite-supply",
+    href: "/services",
   },
   {
     icon: Grid3X3,
@@ -244,12 +244,12 @@ export function Services() {
                             </span>
                           ))}
                         </div>
-                        {/* Learn More → goes to full detail page */}
+
                         <Link
                           href={service.href}
                           className="font-nav inline-flex items-center gap-2 px-5 py-2.5 bg-marble-brown text-primary-foreground text-xs tracking-widest uppercase rounded-md hover:bg-marble-dark transition-all duration-300 group/btn"
                         >
-                          Learn More
+                          View Details
                           <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Link>
                       </div>
