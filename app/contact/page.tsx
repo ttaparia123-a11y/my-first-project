@@ -25,10 +25,12 @@ function Reveal({
   children,
   className = "",
   delay = 0,
+  style = {},
 }: {
   children: React.ReactNode
   className?: string
   delay?: number
+  style?: React.CSSProperties
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
@@ -47,6 +49,7 @@ function Reveal({
       ref={ref}
       className={className}
       style={{
+        ...style,
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(28px)",
         transition: `opacity .75s ease ${delay}s, transform .75s ease ${delay}s`,
@@ -64,7 +67,7 @@ const contactInfo = [
   {
     Icon: MapPin,
     title: "Visit Our Showroom",
-    lines: ["N.H. 8, Sukher, Udaipur, In Front of Skoda Showroom, Rajasthan 313001"],
+    lines: ["N.H. 8, Sukher, Udaipur", "In Front of Skoda Showroom", "Rajasthan — 313001"],
   },
   {
     Icon: Phone,
@@ -118,33 +121,28 @@ export default function ContactPage() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
-  setSending(true)
-
-  try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formState),
-    })
-
-    const data = await res.json()
-
-    if (data.success) {
-      setSubmitted(true)
-      setFormState({ name: "", email: "", phone: "", subject: "", message: "" })
-    } else {
-      alert("Error sending message")
+    e.preventDefault()
+    setSending(true)
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setSubmitted(true)
+        setFormState({ name: "", email: "", phone: "", subject: "", message: "" })
+      } else {
+        alert("Error sending message")
+      }
+    } catch (err) {
+      console.error(err)
+      alert("Something went wrong")
     }
-  } catch (err) {
-    console.error(err)
-    alert("Something went wrong")
+    setSending(false)
   }
 
-  setSending(false)
-}
   return (
     <>
       <style>{`
@@ -162,9 +160,8 @@ export default function ContactPage() {
           --brown:#8c6b4a; --dark:#1c1a17; --text:#3d3530; --muted:#847870;
         }
 
-        /* Outfit as base */
         .ct-root {
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           color:var(--text); background:var(--cream);
         }
 
@@ -174,9 +171,7 @@ export default function ContactPage() {
         @keyframes checkPop{ 0%{transform:scale(0)} 70%{transform:scale(1.2)} 100%{transform:scale(1)} }
         @keyframes fadeUp  { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
-        /* ─────────────────────────────────────────
-           HERO
-        ───────────────────────────────────────── */
+        /* ── HERO ── */
         .hero {
           position:relative; min-height:92vh;
           display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -194,64 +189,56 @@ export default function ContactPage() {
         }
         .hero-content { position:relative; z-index:2; text-align:center; max-width:820px; padding:0 24px; }
 
-        /* Tenor Sans — eyebrow pill */
         .hero-eyebrow {
           display:inline-flex; align-items:center; gap:8px;
           background:rgba(255,255,255,.75); border:1px solid rgba(140,107,74,.25);
           backdrop-filter:blur(6px); border-radius:100px; padding:6px 20px;
-          font-family: var(--font-nav);    /* Tenor Sans */
+          font-family: var(--font-nav);
           font-size:11px; letter-spacing:.18em; text-transform:uppercase;
           color:var(--brown); font-weight:400; margin-bottom:32px;
         }
         .hero-eyebrow .dot { width:6px; height:6px; border-radius:50%; background:var(--brown); animation:pulseD 2s infinite; }
 
-        /* DM Serif Display — H1 */
         .hero-title {
-          font-family: var(--font-h1);     /* DM Serif Display */
+          font-family: var(--font-h1);
           font-size:clamp(68px,11vw,120px);
-          font-weight:400;                 /* Regular 400 */
+          font-weight:400;
           line-height:.9; color:var(--dark); margin-bottom:16px; letter-spacing:-.01em;
         }
         .hero-title em { font-style:italic; color:var(--brown); }
 
-        /* Playfair Display — hero sub */
         .hero-sub {
-          font-family: var(--font-h2);     /* Playfair Display */
+          font-family: var(--font-h2);
           font-size:clamp(18px,2.5vw,26px); font-weight:400;
           color:var(--muted); letter-spacing:.06em; margin-bottom:20px;
         }
 
-        /* Outfit Regular — hero description */
         .hero-desc {
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           font-size:15px; line-height:1.85;
           color:var(--text); max-width:500px; margin:0 auto 48px;
         }
 
-        /* Tenor Sans — CTA button */
         .hero-cta {
           display:inline-flex; align-items:center; gap:10px;
           background:var(--dark); color:#fff;
           padding:14px 32px; border-radius:100px;
-          font-family: var(--font-nav);    /* Tenor Sans */
+          font-family: var(--font-nav);
           font-size:11px; letter-spacing:.14em; text-transform:uppercase;
           text-decoration:none; transition:background .3s,transform .2s;
         }
         .hero-cta:hover { background:var(--brown); transform:translateY(-2px); }
 
-        /* Tenor Sans — scroll label */
         .hero-scroll {
           position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
           display:flex; flex-direction:column; align-items:center; gap:6px;
           color:var(--muted);
-          font-family: var(--font-nav);    /* Tenor Sans */
+          font-family: var(--font-nav);
           font-size:10px; letter-spacing:.16em; text-transform:uppercase;
           animation:bounce 2.2s infinite; z-index:2;
         }
 
-        /* ─────────────────────────────────────────
-           STATS BAR
-        ───────────────────────────────────────── */
+        /* ── STATS BAR ── */
         .stats-bar { background:var(--dark); padding:28px 0; }
         .stats-inner {
           max-width:900px; margin:0 auto;
@@ -260,45 +247,35 @@ export default function ContactPage() {
         .stat-item { padding:12px 0; }
         .stat-item+.stat-item { border-left:1px solid rgba(255,255,255,.1); }
 
-        /* DM Serif Display — large stat numbers */
         .stat-value {
-          font-family: var(--font-h1);     /* DM Serif Display */
+          font-family: var(--font-h1);
           font-size:36px; font-weight:400;
           color:var(--stone); line-height:1; margin-bottom:4px;
         }
-
-        /* Outfit Medium caps — stat labels */
         .stat-label {
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           font-size:11px; font-weight:500;
           letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.45);
         }
 
-        /* ─────────────────────────────────────────
-           SHARED SECTION ELEMENTS
-        ───────────────────────────────────────── */
-
-        /* Tenor Sans — section eyebrow tags */
+        /* ── SHARED SECTION ELEMENTS ── */
         .section-tag {
           display:inline-flex; align-items:center; gap:8px;
-          font-family: var(--font-nav);    /* Tenor Sans */
+          font-family: var(--font-nav);
           font-size:11px; letter-spacing:.18em; text-transform:uppercase;
           color:var(--brown); font-weight:400; margin-bottom:16px;
         }
         .section-tag::before { content:''; display:block; width:24px; height:1px; background:var(--brown); }
 
-        /* Playfair Display Bold 700 — H2 section headings */
         .section-title {
-          font-family: var(--font-h2);     /* Playfair Display */
+          font-family: var(--font-h2);
           font-size:clamp(30px,4.5vw,50px);
-          font-weight:700;                 /* Bold 700 */
+          font-weight:700;
           color:var(--dark); line-height:1.1;
         }
         .section-title em { font-style:italic; font-weight:400; color:var(--brown); }
 
-        /* ─────────────────────────────────────────
-           CONTACT SECTION
-        ───────────────────────────────────────── */
+        /* ── CONTACT SECTION ── */
         .contact-section { padding:96px 0; background:#fff; }
         .contact-wrap { max-width:1200px; margin:0 auto; padding:0 32px; }
         .contact-grid {
@@ -328,16 +305,13 @@ export default function ContactPage() {
         }
         .info-icon svg { color:var(--stone); }
 
-        /* Playfair Display Italic — info card title (H3 level) */
         .info-title {
-          font-family: var(--font-h2);     /* Playfair Display */
-          font-size:18px; font-weight:400; font-style:italic; /* H3 card style */
+          font-family: var(--font-h2);
+          font-size:18px; font-weight:400; font-style:italic;
           color:var(--dark); margin-bottom:6px;
         }
-
-        /* Outfit Regular — info lines */
         .info-line {
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           font-size:13px; line-height:1.75; color:var(--muted);
         }
 
@@ -351,9 +325,7 @@ export default function ContactPage() {
         }
         .social-btn:hover { background:var(--dark); color:#fff; transform:translateY(-2px); }
 
-        /* ─────────────────────────────────────────
-           FORM CARD
-        ───────────────────────────────────────── */
+        /* ── FORM CARD ── */
         .form-card {
           background:var(--cream); border:1px solid rgba(196,180,154,.25);
           border-radius:12px; padding:48px 40px;
@@ -365,16 +337,13 @@ export default function ContactPage() {
           background-size:200% 100%; animation:shimmer 3s ease infinite;
         }
 
-        /* Playfair Display Bold — form title (H2 level) */
         .form-title {
-          font-family: var(--font-h2);     /* Playfair Display */
-          font-size:32px; font-weight:700; /* Bold 700 */
+          font-family: var(--font-h2);
+          font-size:32px; font-weight:700;
           color:var(--dark); margin-bottom:8px;
         }
-
-        /* Outfit Regular — form subtitle */
         .form-subtitle {
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           font-size:14px; color:var(--muted); margin-bottom:36px;
         }
 
@@ -382,21 +351,17 @@ export default function ContactPage() {
         @media(max-width:560px) { .form-row{grid-template-columns:1fr;} }
 
         .field { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
-
-        /* Outfit Medium caps — form labels */
         .field label {
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           font-size:11px; font-weight:500;
           letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
         }
-
-        /* Outfit Regular — form inputs */
         .field input,
         .field textarea,
         .field select {
           background:#fff; border:1px solid rgba(196,180,154,.35);
           border-radius:8px; padding:13px 16px;
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           font-size:14px; color:var(--dark);
           outline:none; transition:border-color .25s,box-shadow .25s;
           width:100%;
@@ -410,12 +375,11 @@ export default function ContactPage() {
         .field textarea { resize:vertical; min-height:120px; }
         .field select { appearance:none; cursor:pointer; }
 
-        /* Tenor Sans — submit button */
         .submit-btn {
           display:inline-flex; align-items:center; gap:10px;
           background:var(--dark); color:#fff;
           padding:15px 36px; border-radius:100px;
-          font-family: var(--font-nav);    /* Tenor Sans */
+          font-family: var(--font-nav);
           font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:400;
           border:none; cursor:pointer; width:100%; justify-content:center;
           transition:background .3s,transform .2s; margin-top:8px;
@@ -423,7 +387,6 @@ export default function ContactPage() {
         .submit-btn:hover:not(:disabled) { background:var(--brown); transform:translateY(-2px); }
         .submit-btn:disabled { opacity:.7; cursor:not-allowed; }
 
-        /* Success state */
         .success-state {
           display:flex; flex-direction:column; align-items:center; justify-content:center;
           text-align:center; padding:48px 24px; gap:20px; animation:fadeUp .6s ease;
@@ -435,34 +398,24 @@ export default function ContactPage() {
           animation:checkPop .5s ease;
         }
         .success-icon svg { color:var(--brown); }
-
-        /* Playfair Display — success title */
         .success-title {
-          font-family: var(--font-h2);     /* Playfair Display */
-          font-size:32px; font-weight:700;
-          color:var(--dark);
+          font-family: var(--font-h2);
+          font-size:32px; font-weight:700; color:var(--dark);
         }
-
-        /* Outfit Regular — success description */
         .success-desc {
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           font-size:14px; line-height:1.85; color:var(--muted); max-width:320px;
         }
 
-        /* ─────────────────────────────────────────
-           MAP SECTION
-        ───────────────────────────────────────── */
+        /* ── MAP SECTION ── */
         .map-section { padding:96px 0; background:var(--warm); }
         .map-wrap { max-width:1200px; margin:0 auto; padding:0 32px; }
         .map-header { margin-bottom:48px; }
-
-        /* Outfit Regular — map subtitle */
         .map-sub {
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           margin-top:12px; font-size:15px; line-height:1.75;
           color:var(--muted); max-width:480px;
         }
-
         .map-container {
           border-radius:12px; overflow:hidden;
           box-shadow:0 24px 64px rgba(0,0,0,.1);
@@ -475,24 +428,18 @@ export default function ContactPage() {
           border:1px solid rgba(196,180,154,.3); border-radius:12px;
           padding:20px 24px; box-shadow:0 8px 32px rgba(0,0,0,.1);
         }
-
-        /* Playfair Display Italic — map overlay name (H3 level) */
         .map-overlay-name {
-          font-family: var(--font-h2);     /* Playfair Display */
+          font-family: var(--font-h2);
           font-size:20px; font-weight:400; font-style:italic;
           color:var(--dark); margin-bottom:6px;
         }
-
-        /* Outfit Regular — map overlay address */
         .map-overlay-addr {
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           font-size:13px; color:var(--muted); line-height:1.6;
         }
-
-        /* Tenor Sans — map directions link */
         .map-overlay-link {
           display:inline-flex; align-items:center; gap:6px;
-          font-family: var(--font-nav);    /* Tenor Sans */
+          font-family: var(--font-nav);
           font-size:11px; letter-spacing:.12em; text-transform:uppercase;
           color:var(--brown); text-decoration:none; margin-top:10px;
           border-bottom:1px solid rgba(140,107,74,.3); padding-bottom:1px;
@@ -500,15 +447,11 @@ export default function ContactPage() {
         }
         .map-overlay-link:hover { color:var(--dark); border-color:var(--dark); }
 
-        /* ─────────────────────────────────────────
-           WHY VISIT SECTION
-        ───────────────────────────────────────── */
+        /* ── WHY VISIT SECTION ── */
         .visit-section { padding:96px 0; background:var(--dark); position:relative; overflow:hidden; }
-
-        /* DM Serif Display — decorative watermark */
         .visit-section::before {
           content:'DM'; position:absolute;
-          font-family: var(--font-h1);     /* DM Serif Display */
+          font-family: var(--font-h1);
           font-size:420px; font-weight:400;
           color:rgba(255,255,255,.02);
           top:50%; left:50%; transform:translate(-50%,-50%);
@@ -530,23 +473,17 @@ export default function ContactPage() {
         }
         .visit-card:hover { background:rgba(140,107,74,.12); border-color:rgba(140,107,74,.3); transform:translateY(-3px); }
         .visit-dot { width:10px; height:10px; border-radius:50%; background:var(--brown); flex-shrink:0; }
-
-        /* Outfit Regular — visit reason labels */
         .visit-label {
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           font-size:13px; color:rgba(255,255,255,.7);
         }
-
-        /* Tenor Sans — "Follow Us" label */
         .social-follow-label {
-          font-family: var(--font-nav);    /* Tenor Sans */
+          font-family: var(--font-nav);
           font-size:11px; letter-spacing:.14em; text-transform:uppercase;
           color:var(--muted); margin-bottom:12px;
         }
 
-        /* ─────────────────────────────────────────
-           CTA SECTION
-        ───────────────────────────────────────── */
+        /* ── CTA SECTION ── */
         .cta-section { padding:112px 0; position:relative; overflow:hidden; text-align:center; }
         .cta-bg {
           position:absolute; inset:0;
@@ -559,52 +496,40 @@ export default function ContactPage() {
           background:radial-gradient(ellipse at center,rgba(249,246,241,.15) 0%,rgba(249,246,241,.78) 100%);
         }
         .cta-inner { position:relative; max-width:640px; margin:0 auto; padding:0 32px; }
-
-        /* Playfair Display Bold 700 — CTA H2 */
         .cta-title {
-          font-family: var(--font-h2);     /* Playfair Display */
+          font-family: var(--font-h2);
           font-size:clamp(36px,5.5vw,60px);
-          font-weight:700;                 /* Bold 700 */
+          font-weight:700;
           color:var(--dark); line-height:1.1; margin-bottom:20px;
         }
         .cta-title em { font-style:italic; font-weight:400; color:var(--brown); }
-
-        /* Outfit Regular — CTA description */
         .cta-desc {
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           font-size:15px; line-height:1.85; color:var(--muted); margin-bottom:44px;
         }
-
         .cta-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:48px; }
-
-        /* Tenor Sans — primary button */
         .btn-p {
           display:inline-flex; align-items:center; gap:10px;
           background:var(--dark); color:#fff;
           padding:15px 34px; border-radius:100px;
-          font-family: var(--font-nav);    /* Tenor Sans */
+          font-family: var(--font-nav);
           font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:400;
           text-decoration:none; transition:background .3s,transform .2s;
         }
         .btn-p:hover { background:var(--brown); transform:translateY(-2px); }
-
-        /* Tenor Sans — outline button */
         .btn-o {
           display:inline-flex; align-items:center; gap:10px;
           border:1px solid var(--dark); color:var(--dark);
           padding:15px 34px; border-radius:100px;
-          font-family: var(--font-nav);    /* Tenor Sans */
+          font-family: var(--font-nav);
           font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:400;
           text-decoration:none; transition:background .3s,color .3s,transform .2s;
         }
         .btn-o:hover { background:var(--dark); color:#fff; transform:translateY(-2px); }
-
         .cta-badges { display:flex; justify-content:center; gap:32px; flex-wrap:wrap; }
-
-        /* Outfit Medium caps — trust badges */
         .cta-badge {
           display:flex; align-items:center; gap:8px;
-          font-family: var(--font-body);   /* Outfit */
+          font-family: var(--font-body);
           font-size:11px; font-weight:500;
           letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
         }
@@ -624,34 +549,59 @@ export default function ContactPage() {
         <section className="hero">
           <div className="hero-bg" />
           <div className="hero-content">
-            {/* Tenor Sans eyebrow */}
-            <div className="hero-eyebrow"
-              style={{ opacity:heroVisible?1:0, transform:heroVisible?"translateY(0)":"translateY(16px)", transition:"opacity .9s ease .1s,transform .9s ease .1s" }}>
+            <div
+              className="hero-eyebrow"
+              style={{
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? "translateY(0)" : "translateY(16px)",
+                transition: "opacity .9s ease .1s,transform .9s ease .1s",
+              }}
+            >
               <span className="dot" /> Dayanand Marbles &mdash; Udaipur, Rajasthan
             </div>
-            {/* DM Serif Display H1 */}
-            <h1 className="hero-title"
-              style={{ opacity:heroVisible?1:0, transform:heroVisible?"translateY(0)":"translateY(20px)", transition:"opacity .9s ease .3s,transform .9s ease .3s" }}>
+            <h1
+              className="hero-title"
+              style={{
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "opacity .9s ease .3s,transform .9s ease .3s",
+              }}
+            >
               Contact<br /><em>Us</em>
             </h1>
-            {/* Playfair Display sub */}
-            <p className="hero-sub"
-              style={{ opacity:heroVisible?1:0, transform:heroVisible?"translateY(0)":"translateY(20px)", transition:"opacity .9s ease .45s,transform .9s ease .45s" }}>
+            <p
+              className="hero-sub"
+              style={{
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "opacity .9s ease .45s,transform .9s ease .45s",
+              }}
+            >
               Visit · Call · Write
             </p>
-            {/* Outfit body */}
-            <p className="hero-desc"
-              style={{ opacity:heroVisible?1:0, transform:heroVisible?"translateY(0)":"translateY(20px)", transition:"opacity .9s ease .6s,transform .9s ease .6s" }}>
+            <p
+              className="hero-desc"
+              style={{
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "opacity .9s ease .6s,transform .9s ease .6s",
+              }}
+            >
               We'd love to hear from you. Reach out to discuss your project, get a free
               quote, or simply visit our showroom in the marble capital of India.
             </p>
-            {/* Tenor Sans CTA */}
-            <a href="#contact" className="hero-cta"
-              style={{ opacity:heroVisible?1:0, transform:heroVisible?"translateY(0)":"translateY(20px)", transition:"opacity .9s ease .75s,transform .9s ease .75s" }}>
+            <a
+              href="#contact"
+              className="hero-cta"
+              style={{
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "opacity .9s ease .75s,transform .9s ease .75s",
+              }}
+            >
               Get in Touch <ArrowRight size={16} />
             </a>
           </div>
-          {/* Tenor Sans scroll */}
           <div className="hero-scroll"><ChevronDown size={18} /><span>Scroll</span></div>
         </section>
 
@@ -660,21 +610,18 @@ export default function ContactPage() {
           <div className="stats-inner">
             {stats.map(s => (
               <div className="stat-item" key={s.label}>
-                {/* DM Serif Display */}
                 <div className="stat-value">{s.value}</div>
-                {/* Outfit Medium caps */}
                 <div className="stat-label">{s.label}</div>
               </div>
             ))}
           </div>
         </div>
+
         {/* ── CONTACT INFO + FORM ── */}
         <section className="contact-section" id="contact">
           <div className="contact-wrap">
             <Reveal style={{ marginBottom: 64 }}>
-              {/* Tenor Sans tag */}
               <div className="section-tag">Get In Touch</div>
-              {/* Playfair Display Bold H2 */}
               <h2 className="section-title">We're Here to <em>Help You</em></h2>
             </Reveal>
 
@@ -685,9 +632,7 @@ export default function ContactPage() {
                   <div className="info-card" key={item.title}>
                     <div className="info-icon"><item.Icon size={22} strokeWidth={1.5} /></div>
                     <div className="info-body">
-                      {/* Playfair Display Italic — H3 card title */}
                       <div className="info-title">{item.title}</div>
-                      {/* Outfit Regular — info lines */}
                       {item.lines.map((line, i) => (
                         <div className="info-line" key={i}>{line}</div>
                       ))}
@@ -695,9 +640,7 @@ export default function ContactPage() {
                   </div>
                 ))}
 
-                {/* Social icons */}
                 <div>
-                  {/* Tenor Sans — "Follow Us" label */}
                   <div className="social-follow-label">Follow Us</div>
                   <div className="social-row">
                     <a href="#" className="social-btn" aria-label="Instagram"><Instagram size={18} /></a>
@@ -713,34 +656,30 @@ export default function ContactPage() {
                   {submitted ? (
                     <div className="success-state">
                       <div className="success-icon"><CheckCircle2 size={32} /></div>
-                      {/* Playfair Display Bold */}
                       <div className="success-title">Message Sent!</div>
-                      {/* Outfit Regular */}
                       <p className="success-desc">
                         Thank you for reaching out. Our team will get back to you within 24 hours.
                       </p>
-                      {/* Tenor Sans button */}
                       <button
                         className="submit-btn"
-                        style={{ maxWidth:240 }}
-                        onClick={() => { setSubmitted(false); setFormState({ name:"", email:"", phone:"", subject:"", message:"" }) }}
+                        style={{ maxWidth: 240 }}
+                        onClick={() => {
+                          setSubmitted(false)
+                          setFormState({ name: "", email: "", phone: "", subject: "", message: "" })
+                        }}
                       >
                         Send Another
                       </button>
                     </div>
                   ) : (
                     <>
-                      {/* Playfair Display Bold 700 — form title */}
                       <div className="form-title">Send Us a Message</div>
-                      {/* Outfit Regular — subtitle */}
                       <div className="form-subtitle">We typically respond within one business day.</div>
 
                       <form onSubmit={handleSubmit}>
                         <div className="form-row">
                           <div className="field">
-                            {/* Outfit Medium caps label */}
                             <label htmlFor="name">Full Name *</label>
-                            {/* Outfit input */}
                             <input id="name" name="name" type="text" placeholder="Rajesh Mehta"
                               value={formState.name} onChange={handleChange} required />
                           </div>
@@ -778,7 +717,6 @@ export default function ContactPage() {
                             value={formState.message} onChange={handleChange} required />
                         </div>
 
-                        {/* Tenor Sans submit button */}
                         <button type="submit" className="submit-btn" disabled={sending}>
                           {sending ? <>Sending…</> : <>Send Message <Send size={15} /></>}
                         </button>
@@ -792,24 +730,23 @@ export default function ContactPage() {
         </section>
 
         {/* ── MAP SECTION ── */}
+        {/* ✅ UPDATED: Uses exact coordinates 24.657188, 73.719987 from your Google Maps link */}
         <section className="map-section">
           <div className="map-wrap">
             <Reveal className="map-header">
-              {/* Tenor Sans tag */}
               <div className="section-tag">Find Us</div>
-              {/* Playfair Display Bold H2 */}
               <h2 className="section-title">Our <em>Showroom</em></h2>
-              {/* Outfit Regular subtitle */}
               <p className="map-sub">
-                Located in the heart of Udaipur's marble district — India's stone capital.
+                Located on N.H. 8, Sukher, Udaipur — India's marble capital.
                 Come see our collection in person.
               </p>
             </Reveal>
 
             <Reveal delay={0.1}>
               <div className="map-container">
+                {/* ✅ CORRECT coordinates pinned from your Google Maps share link */}
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.2!2d73.7139!3d24.5854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3967e56c8f8f2c3d%3A0x1b3e7b3e7b3e7b3e!2sUdaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                  src="https://www.google.com/maps?q=24.657188,73.719987&z=17&output=embed"
                   width="100%"
                   height="480"
                   style={{ border: 0 }}
@@ -819,15 +756,14 @@ export default function ContactPage() {
                   title="Dayanand Marbles Location"
                 />
                 <div className="map-overlay">
-                  {/* Playfair Display Italic — overlay name */}
                   <div className="map-overlay-name">Dayanand Marbles</div>
-                  {/* Outfit Regular — address */}
                   <div className="map-overlay-addr">
-                    Near Marble Market, Udaipur<br />Rajasthan — 313001
+                    N.H. 8, Sukher, In Front of Skoda Showroom<br />
+                    Udaipur, Rajasthan — 313001
                   </div>
-                  {/* Tenor Sans — directions link */}
+                  {/* ✅ CORRECT: Direct link to exact coordinates */}
                   <a
-                    href="https://maps.google.com/?q=Udaipur+Rajasthan"
+                    href="https://www.google.com/maps?q=24.657188,73.719987"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="map-overlay-link"
@@ -844,9 +780,7 @@ export default function ContactPage() {
         <section className="visit-section">
           <div className="visit-inner">
             <Reveal className="visit-header">
-              {/* Tenor Sans tag (stone on dark) */}
               <div className="section-tag">Why Visit Us</div>
-              {/* Playfair Display Bold H2 (white on dark) */}
               <h2 className="section-title">
                 Reasons to Choose <em>Dayanand</em>
               </h2>
@@ -856,7 +790,6 @@ export default function ContactPage() {
                 <Reveal key={r} delay={i * 0.07}>
                   <div className="visit-card">
                     <div className="visit-dot" />
-                    {/* Outfit Regular */}
                     <div className="visit-label">{r}</div>
                   </div>
                 </Reveal>
@@ -869,25 +802,20 @@ export default function ContactPage() {
         <section className="cta-section">
           <div className="cta-bg" />
           <Reveal className="cta-inner">
-            {/* Tenor Sans tag */}
-            <div className="section-tag" style={{ justifyContent:"center" }}>Ready to Begin?</div>
-            {/* Playfair Display Bold H2 */}
+            <div className="section-tag" style={{ justifyContent: "center" }}>Ready to Begin?</div>
             <h2 className="cta-title">
               Visit Our<br /><em>Showroom Today</em>
             </h2>
-            {/* Outfit Regular */}
             <p className="cta-desc">
               See our full collection in person. Our stone experts are ready to guide
               you through 500+ varieties of marble, granite, and designer tiles.
             </p>
             <div className="cta-btns">
-              {/* Tenor Sans buttons */}
               <Link href="/products" className="btn-p">Explore Products <ArrowRight size={15} /></Link>
               <Link href="/about" className="btn-o">About Us <ArrowRight size={15} /></Link>
             </div>
-            {/* Outfit Medium caps badges */}
             <div className="cta-badges">
-              {["Free Consultation","No Obligation","Expert Guidance"].map(b => (
+              {["Free Consultation", "No Obligation", "Expert Guidance"].map(b => (
                 <span className="cta-badge" key={b}><CheckCircle2 size={14} />{b}</span>
               ))}
             </div>
