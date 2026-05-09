@@ -21,7 +21,7 @@ const productLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-marble-dark text-primary-foreground">
+    <footer className="bg-white text-gray-800 border-t border-gray-200"> 
       <div className="container mx-auto px-6 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
@@ -129,9 +129,9 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-primary-foreground/10">
+      <div className="border-t border-gray-200">
         <div className="container mx-auto px-6 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-primary-foreground/60">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
             <p>&copy; 2026 Dayanand Marbles. All rights reserved.</p>
             <div className="flex gap-6">
               <Link href="#" className="hover:text-marble-gold transition-colors">
