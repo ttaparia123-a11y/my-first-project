@@ -20,7 +20,7 @@ const services = [
       { title: "Quality Assured", desc: "Every slab is inspected for consistency in color, veining, and finish." },
       { title: "Bulk Supply", desc: "Reliable supply for large residential and commercial projects." },
     ],
-    type: "full", // has its own detail page
+    type: "full",
     href: "/services",
   },
   {
@@ -36,7 +36,7 @@ const services = [
       { title: "Commercial Grade", desc: "Suitable for high-traffic commercial spaces and large installations." },
       { title: "Multiple Finishes", desc: "Available in polished, honed, brushed, and leathered finishes." },
     ],
-    type: "full", // has its own detail page
+    type: "full",
     href: "/services",
   },
   {
@@ -47,7 +47,7 @@ const services = [
       "Looking for tiles to complement your marble or granite? We help you find the perfect tiles through our trusted partner network. Whether it's porcelain, ceramic, or mosaic — tell us your requirement and we'll guide you to the right option and get it arranged for you.",
     features: ["Porcelain Tiles", "Ceramic Tiles", "Mosaic Patterns", "Partner Network"],
     benefits: [],
-    type: "enquiry", // no detail page — goes to contact
+    type: "enquiry",
     href: "/contact",
   },
 ]
@@ -77,19 +77,17 @@ export function Services() {
     }, 50)
   }
 
-  // Separate marble+granite from tiles for layout
   const mainServices = services.filter((s) => s.type === "full")
   const enquiryServices = services.filter((s) => s.type === "enquiry")
 
   return (
-    <section id="services" ref={sectionRef} className="py-24 md:py-32">
+    <section id="services" ref={sectionRef} className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-6">
 
-        {/* ─── DETAIL VIEW (shown after clicking Learn More) ─── */}
+        {/* DETAIL VIEW */}
         {selectedService ? (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
 
-            {/* Back Button */}
             <button
               onClick={handleBack}
               className="inline-flex items-center gap-2 text-sm font-nav text-marble-brown tracking-widest uppercase mb-12 hover:underline underline-offset-4"
@@ -98,14 +96,13 @@ export function Services() {
               Back to Services
             </button>
 
-            {/* Service Header */}
             <div className="flex items-center gap-5 mb-4">
               <div className="w-16 h-16 bg-marble-cream rounded-xl flex items-center justify-center shrink-0">
                 <selectedService.icon className="w-8 h-8 text-marble-brown" />
               </div>
               <div>
                 <p className="font-nav text-xs text-marble-brown tracking-widest uppercase mb-1">Our Services</p>
-                <h2 className="font-h1 text-4xl md:text-5xl font-normal text-foreground">
+                <h2 className="font-h1 text-4xl md:text-5xl font-normal text-gray-900">
                   {selectedService.title}
                 </h2>
               </div>
@@ -113,7 +110,6 @@ export function Services() {
 
             <p className="font-body text-xl text-marble-brown italic mb-8">{selectedService.tagline}</p>
 
-            {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-10">
               {selectedService.features.map((feature) => (
                 <span
@@ -125,29 +121,27 @@ export function Services() {
               ))}
             </div>
 
-            <div className="border-t border-border/50 mb-10" />
+            <div className="border-t border-gray-200 mb-10" />
 
-            {/* Description */}
-            <p className="font-body text-lg text-muted-foreground leading-relaxed mb-16 max-w-3xl">
+            <p className="font-body text-lg text-gray-600 leading-relaxed mb-16 max-w-3xl">
               {selectedService.description}
             </p>
 
-            {/* Benefits */}
             {selectedService.benefits.length > 0 && (
               <>
-                <h3 className="font-h2 text-2xl font-semibold text-foreground mb-8">
+                <h3 className="font-h2 text-2xl font-semibold text-gray-900 mb-8">
                   What We <span className="italic font-normal text-marble-brown">Offer</span>
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-6 mb-16">
                   {selectedService.benefits.map((benefit) => (
                     <div
                       key={benefit.title}
-                      className="flex gap-4 p-6 bg-card border border-border/50 rounded-xl hover:border-marble-brown/30 hover:shadow-md transition-all duration-300"
+                      className="flex gap-4 p-6 bg-white border border-gray-200 rounded-xl hover:border-marble-brown/30 hover:shadow-md transition-all duration-300"
                     >
                       <CheckCircle2 className="w-5 h-5 text-marble-brown shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-h2 text-base font-semibold text-foreground mb-1">{benefit.title}</h4>
-                        <p className="font-body text-sm text-muted-foreground leading-relaxed">{benefit.desc}</p>
+                        <h4 className="font-h2 text-base font-semibold text-gray-900 mb-1">{benefit.title}</h4>
+                        <p className="font-body text-sm text-gray-500 leading-relaxed">{benefit.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -155,20 +149,19 @@ export function Services() {
               </>
             )}
 
-            {/* CTA */}
-            <div className="bg-marble-cream/40 border border-border/50 rounded-2xl p-10 text-center">
-              <h3 className="font-h2 text-2xl font-semibold text-foreground mb-3">
+            <div className="bg-[#f9f6f1] border border-gray-200 rounded-2xl p-10 text-center">
+              <h3 className="font-h2 text-2xl font-semibold text-gray-900 mb-3">
                 Interested in{" "}
                 <span className="italic font-normal text-marble-brown">{selectedService.title}?</span>
               </h3>
-              <p className="font-body text-muted-foreground mb-8 max-w-xl mx-auto">
+              <p className="font-body text-gray-500 mb-8 max-w-xl mx-auto">
                 Get in touch with our team for pricing, samples, and project consultation. We're happy to help you find the perfect stone for your space.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
                   <Button
                     size="lg"
-                    className="bg-marble-brown text-primary-foreground hover:bg-marble-dark px-8 py-6 text-base font-medium transition-all duration-300 group"
+                    className="bg-marble-brown text-white hover:bg-marble-dark px-8 py-6 text-base font-medium transition-all duration-300 group"
                   >
                     Get a Free Quote
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -177,8 +170,7 @@ export function Services() {
                 <Link href="/products">
                   <Button
                     size="lg"
-                    variant="outline"
-                    className="border-marble-brown text-marble-brown hover:bg-marble-brown hover:text-primary-foreground px-8 py-6 text-base font-medium transition-all duration-300"
+                    className="bg-white text-black border-2 border-black hover:bg-marble-brown hover:text-white hover:border-marble-brown px-8 py-6 text-base font-medium transition-all duration-300"
                   >
                     View All Products
                   </Button>
@@ -190,7 +182,6 @@ export function Services() {
 
         ) : (
 
-          /* ─── CARDS VIEW (default homepage view) ─── */
           <>
             {/* Header */}
             <div
@@ -203,21 +194,21 @@ export function Services() {
                   Our Services
                 </span>
               </div>
-              <h2 className="font-h2 text-4xl md:text-5xl font-bold text-foreground mb-6">
+              <h2 className="font-h2 text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Comprehensive{" "}
                 <span className="italic font-normal text-marble-brown">Stone Solutions</span>
               </h2>
-              <p className="font-body text-lg text-muted-foreground">
+              <p className="font-body text-lg text-gray-500">
                 From sourcing the finest marble & granite to delivering them at your doorstep, we make the buying process simple and reliable.
               </p>
             </div>
 
-            {/* ── Row 1: Marble + Granite (2 columns) ── */}
+            {/* Row 1: Marble + Granite */}
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               {mainServices.map((service, index) => (
                 <Card
                   key={service.title}
-                  className={`group bg-card border-border/50 hover:border-marble-brown/30 hover:shadow-xl transition-all duration-500 overflow-hidden ${
+                  className={`group bg-white border-gray-200 hover:border-marble-brown/30 hover:shadow-xl transition-all duration-500 overflow-hidden ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
@@ -225,13 +216,13 @@ export function Services() {
                   <CardContent className="p-8">
                     <div className="flex items-start gap-6">
                       <div className="w-14 h-14 bg-marble-cream rounded-lg flex items-center justify-center shrink-0 group-hover:bg-marble-brown transition-colors">
-                        <service.icon className="w-7 h-7 text-marble-brown group-hover:text-primary-foreground transition-colors" />
+                        <service.icon className="w-7 h-7 text-marble-brown group-hover:text-white transition-colors" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-h2 text-2xl font-semibold text-foreground mb-3 group-hover:text-marble-brown transition-colors">
+                        <h3 className="font-h2 text-2xl font-semibold text-gray-900 mb-3 group-hover:text-marble-brown transition-colors">
                           {service.title}
                         </h3>
-                        <p className="font-body text-muted-foreground leading-relaxed mb-6">
+                        <p className="font-body text-gray-500 leading-relaxed mb-6">
                           {service.description}
                         </p>
                         <div className="flex flex-wrap gap-2 mb-6">
@@ -244,10 +235,9 @@ export function Services() {
                             </span>
                           ))}
                         </div>
-
                         <Link
                           href={service.href}
-                          className="font-nav inline-flex items-center gap-2 px-5 py-2.5 bg-marble-brown text-primary-foreground text-xs tracking-widest uppercase rounded-md hover:bg-marble-dark transition-all duration-300 group/btn"
+                          className="font-nav inline-flex items-center gap-2 px-5 py-2.5 bg-marble-brown text-white text-xs tracking-widest uppercase rounded-md hover:bg-marble-dark transition-all duration-300 group/btn"
                         >
                           View Details
                           <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -259,52 +249,51 @@ export function Services() {
               ))}
             </div>
 
-            {/* ── Row 2: Tiles — centered, max half width on desktop ── */}
+            {/* Row 2: Tiles */}
             <div className="flex justify-start">
-  {enquiryServices.map((service, index) => (
-    <Card
-      key={service.title}
-      className={`group bg-card border-border/50 hover:border-marble-brown/30 hover:shadow-xl transition-all duration-500 overflow-hidden w-full md:w-1/2 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      }`}
-      style={{ transitionDelay: `${(mainServices.length + index) * 150}ms` }}
-    >
-      <CardContent className="p-8">
-        <div className="flex items-start gap-6">
-          <div className="w-14 h-14 bg-marble-cream rounded-lg flex items-center justify-center shrink-0 group-hover:bg-marble-brown transition-colors">
-            <service.icon className="w-7 h-7 text-marble-brown group-hover:text-primary-foreground transition-colors" />
-          </div>
-          <div className="flex-1">
-            <h3 className="font-h2 text-2xl font-semibold text-foreground mb-3 group-hover:text-marble-brown transition-colors">
-              {service.title}
-            </h3>
-            <p className="font-body text-muted-foreground leading-relaxed mb-6">
-              {service.description}
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {service.features.map((feature) => (
-                <span
-                  key={feature}
-                  className="font-nav px-3 py-1 bg-marble-cream/60 text-xs text-marble-brown rounded-full tracking-wider uppercase"
+              {enquiryServices.map((service, index) => (
+                <Card
+                  key={service.title}
+                  className={`group bg-white border-gray-200 hover:border-marble-brown/30 hover:shadow-xl transition-all duration-500 overflow-hidden w-full md:w-1/2 ${
+                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                  }`}
+                  style={{ transitionDelay: `${(mainServices.length + index) * 150}ms` }}
                 >
-                  {feature}
-                </span>
+                  <CardContent className="p-8">
+                    <div className="flex items-start gap-6">
+                      <div className="w-14 h-14 bg-marble-cream rounded-lg flex items-center justify-center shrink-0 group-hover:bg-marble-brown transition-colors">
+                        <service.icon className="w-7 h-7 text-marble-brown group-hover:text-white transition-colors" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-h2 text-2xl font-semibold text-gray-900 mb-3 group-hover:text-marble-brown transition-colors">
+                          {service.title}
+                        </h3>
+                        <p className="font-body text-gray-500 leading-relaxed mb-6">
+                          {service.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {service.features.map((feature) => (
+                            <span
+                              key={feature}
+                              className="font-nav px-3 py-1 bg-marble-cream/60 text-xs text-marble-brown rounded-full tracking-wider uppercase"
+                            >
+                              {feature}
+                            </span>
+                          ))}
+                        </div>
+                        <Link
+                          href={service.href}
+                          className="font-nav inline-flex items-center gap-2 px-5 py-2.5 bg-marble-brown text-white text-xs tracking-widest uppercase rounded-md hover:bg-marble-dark transition-all duration-300 group/btn"
+                        >
+                          Enquire Now
+                          <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                        </Link>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
-
-            <Link
-              href={service.href}
-              className="font-nav inline-flex items-center gap-2 px-5 py-2.5 bg-marble-brown text-primary-foreground text-xs tracking-widest uppercase rounded-md hover:bg-marble-dark transition-all duration-300 group/btn"
-            >
-              Enquire Now
-              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-          </div>
-           </CardContent>
-              </Card>
-            ))}
-              </div>
           </>
         )}
 

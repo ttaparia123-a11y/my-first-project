@@ -43,12 +43,12 @@ export function Products() {
   }, [])
 
   return (
-    <section ref={ref} className="py-24 bg-marble-cream/30">
+    <section ref={ref} className="py-24 bg-white">
       <div className="container mx-auto px-6">
 
         {/* Header */}
         <div className="mb-16">
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-4xl font-bold text-gray-900">
             Explore <span className="italic text-marble-brown">Collection</span>
           </h2>
         </div>
@@ -58,7 +58,7 @@ export function Products() {
           {products.map((product, i) => (
             <Link
               key={product.slug}
-              href={`/products/${product.slug}`}  // ✅ IMPORTANT
+              href={`/products/${product.slug}`}
               className={`group relative aspect-[3/4] rounded-lg overflow-hidden transition ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}

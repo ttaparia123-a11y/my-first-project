@@ -13,7 +13,6 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/products", label: "Products" },
-  { href: "/portfolio", label: "Portfolio" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ]
@@ -51,10 +50,10 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-sm py-5"
-          : "bg-transparent py-5"
-      }`}
+  isScrolled
+    ? "bg-white/95 backdrop-blur-md shadow-sm py-5"
+    : "bg-transparent py-5"
+}`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
 
@@ -68,7 +67,7 @@ export function Header() {
             priority
           />
           <div className="flex flex-col">
-            <span className="font-brand text-xl font-bold tracking-wide">
+            <span className="font-brand text-xl font-bold tracking-wide text-gray-900">
               Dayanand <span className="italic font-normal">Marbles</span>
             </span>
           </div>

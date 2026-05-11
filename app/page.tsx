@@ -4,7 +4,6 @@ import { Hero } from "@/components/hero"
 import { About } from "@/components/about"
 import { Services } from "@/components/services"
 import { Products } from "@/components/products"
-import { Portfolio } from "@/components/portfolio"
 import { WhyChooseUs } from "@/components/why-choose-us"
 import { Blog } from "@/components/blog"
 import { CTA } from "@/components/cta"
@@ -41,7 +40,6 @@ export default function HomePage() {
       <About />
       <Services />
       <Products />
-      <Portfolio />
       <WhyChooseUs />
       <Blog />
       <CTA />

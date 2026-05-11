@@ -52,7 +52,7 @@ export function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-24 md:py-32 bg-marble-cream/30"
+      className="py-24 md:py-32 bg-white"
     >
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -73,7 +73,7 @@ export function About() {
             </div>
 
             {/* Floating card */}
-            <div className="absolute -bottom-8 -right-8 bg-card p-6 rounded-lg shadow-xl max-w-xs">
+            <div className="absolute -bottom-8 -right-8 bg-white p-6 rounded-lg shadow-xl max-w-xs">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 bg-marble-brown rounded-full flex items-center justify-center">
                   <span className="font-h1 text-2xl font-normal text-white">
@@ -81,10 +81,10 @@ export function About() {
                   </span>
                 </div>
                 <div>
-                  <div className="font-h2 text-lg font-semibold text-foreground">
+                  <div className="font-h2 text-lg font-semibold text-gray-900">
                     Years of Trust
                   </div>
-                  <div className="font-body text-sm text-muted-foreground">
+                  <div className="font-body text-sm text-gray-500">
                     Serving Rajasthan since 2004
                   </div>
                 </div>
@@ -106,7 +106,7 @@ export function About() {
             </div>
 
             {/* Section Heading */}
-            <h2 className="font-h2 text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
+            <h2 className="font-h2 text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Crafting Luxury Spaces with{" "}
               <span className="italic font-normal text-marble-brown">
                 Nature&apos;s Finest Stone
@@ -114,13 +114,12 @@ export function About() {
             </h2>
 
             {/* Paragraphs */}
-            <p className="font-body text-lg text-muted-foreground leading-relaxed mb-8">
+            <p className="font-body text-lg text-gray-600 leading-relaxed mb-8">
               Dayanand Marbles is a trusted name in Udaipur, Rajasthan for premium marble and granite slabs.
                With over 20 years in the business, we source quality Indian and Italian marble and granite from reliable parties and supply them to dealers, builders, and local customers across the region. 
                We deliver goods directly to your location, making the process simple and hassle-free. Whether you are building a new home or running a construction business, 
               we are here to help you get the right stone at the right price.
             </p>
-
 
             {/* Features Grid */}
             <div className="grid sm:grid-cols-2 gap-6">
@@ -136,10 +135,10 @@ export function About() {
                     <feature.icon className="w-6 h-6 text-marble-brown" />
                   </div>
                   <div>
-                    <h3 className="font-h2 text-base font-semibold text-foreground mb-1">
+                    <h3 className="font-h2 text-base font-semibold text-gray-900 mb-1">
                       {feature.title}
                     </h3>
-                    <p className="font-body text-sm text-muted-foreground">
+                    <p className="font-body text-sm text-gray-500">
                       {feature.description}
                     </p>
                   </div>

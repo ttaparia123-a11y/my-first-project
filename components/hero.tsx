@@ -30,7 +30,13 @@ export function Hero() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
+        {/* Same overlay as about page hero */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,0.35), rgba(249,246,241,0.80))",
+          }}
+        />
       </div>
 
       {/* Subtle particle effect overlay */}
@@ -47,9 +53,10 @@ export function Hero() {
 
           {/* Badge */}
           <div
-            className={`inline-flex items-center gap-2 px-4 py-2 bg-marble-cream/80 backdrop-blur-sm rounded-full mb-8 transition-all duration-1000 ${
+            className={`inline-flex items-center gap-2 px-4 py-2 backdrop-blur-sm rounded-full mb-8 transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
+            style={{ background: "rgba(255,255,255,0.75)", border: "1px solid rgba(140,107,74,0.25)" }}
           >
             <span className="w-2 h-2 bg-marble-gold rounded-full animate-pulse" />
             <span className="font-nav text-sm text-marble-brown tracking-widest uppercase">
@@ -65,22 +72,23 @@ export function Hero() {
                 : "opacity-0 translate-y-8 blur-sm"
             }`}
           >
-            <span className="text-foreground">
+            <span style={{ color: "#1c1a17" }}>
               Premium Marble & Granite Supplier in Udaipur
             </span>
           </h1>
 
           {/* Tagline */}
           <p
-            className={`font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed transition-all duration-1000 delay-400 ${
+            className={`font-body text-lg md:text-xl max-w-2xl mx-auto mb-6 leading-relaxed transition-all duration-1000 delay-400 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
+            style={{ color: "#847870" }}
           >
             Indian Marble, Italian Marble & Granite for Homes, Builders & Dealers
           </p>
 
           {/* Trust Line */}
-          <p className="font-body text-sm text-muted-foreground mb-10">
+          <p className="font-body text-sm mb-10" style={{ color: "#847870" }}>
             1000+ Happy Customers • 20+ Years Experience
           </p>
 
@@ -105,41 +113,42 @@ export function Hero() {
             <Link href="/products">
               <Button
                 size="lg"
-                variant="outline"
-                className="bg-white text-black border border-black hover:bg-[var(--marble-brown)] hover:text-white px-8 py-6 text-base font-medium transition-all duration-300 group"
+                
+                className="bg-white text-black border-2 border-black hover:bg-[var(--marble-brown)] hover:text-white hover:border-[var(--marble-brown)] px-8 py-6 text-base font-medium transition-all duration-300 group"
               >
                 View Products
               </Button>
             </Link>
-          </div> {/* ✅ FIXED: properly closed CTA div */}
+          </div>
 
           {/* Stats */}
           <div
-            className={`grid grid-cols-3 gap-8 mt-20 pt-12 border-t border-border/50 transition-all duration-1000 delay-800 ${
+            className={`grid grid-cols-3 gap-8 mt-20 pt-12 transition-all duration-1000 delay-800 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
+            style={{ borderTop: "1px solid rgba(140,107,74,0.2)" }}
           >
             <div className="text-center">
               <div className="font-h1 text-4xl md:text-5xl font-normal text-marble-brown mb-2">
                 20+
               </div>
-              <div className="font-nav text-sm text-muted-foreground uppercase tracking-widest">
+              <div className="font-nav text-sm uppercase tracking-widest" style={{ color: "#847870" }}>
                 Years Experience
               </div>
             </div>
             <div className="text-center">
               <div className="font-h1 text-4xl md:text-5xl font-normal text-marble-brown mb-2">
-                1000+ 
+                1000+
               </div>
-              <div className="font-nav text-sm text-muted-foreground uppercase tracking-widest">
-                 Happy Customers
+              <div className="font-nav text-sm uppercase tracking-widest" style={{ color: "#847870" }}>
+                Happy Customers
               </div>
             </div>
             <div className="text-center">
               <div className="font-h1 text-4xl md:text-5xl font-normal text-marble-brown mb-2">
                 50+
               </div>
-              <div className="font-nav text-sm text-muted-foreground uppercase tracking-widest">
+              <div className="font-nav text-sm uppercase tracking-widest" style={{ color: "#847870" }}>
                 Stone Varieties
               </div>
             </div>
@@ -150,7 +159,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
-        <div className="w-6 h-10 border-2 border-marble-brown/30 rounded-full flex items-start justify-center p-2">
+        <div className="w-6 h-10 rounded-full flex items-start justify-center p-2" style={{ border: "2px solid rgba(140,107,74,0.3)" }}>
           <div className="w-1 h-2 bg-marble-brown rounded-full animate-bounce" />
         </div>
       </div>

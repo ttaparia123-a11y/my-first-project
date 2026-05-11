@@ -58,7 +58,7 @@ export function Blog() {
   }, [])
 
   return (
-    <section id="blog" ref={sectionRef} className="py-24 md:py-32 bg-marble-cream/30">
+    <section id="blog" ref={sectionRef} className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-6">
 
         {/* Header */}
@@ -74,14 +74,14 @@ export function Blog() {
               </span>
             </div>
 
-            <h2 className="font-h2 text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h2 className="font-h2 text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Stone Insights{" "}
               <span className="italic font-normal text-marble-brown">
                 & Tips
               </span>
             </h2>
 
-            <p className="font-body text-lg text-muted-foreground">
+            <p className="font-body text-lg text-gray-500">
               Expert advice and inspiration for your marble and granite projects.
             </p>
           </div>
@@ -100,7 +100,7 @@ export function Blog() {
           {blogPosts.map((post, index) => (
             <Card
               key={post.slug}
-              className={`group bg-card border-border/50 hover:border-marble-brown/30 hover:shadow-xl overflow-hidden transition-all duration-500 ${
+              className={`group bg-white border-gray-200 hover:border-marble-brown/30 hover:shadow-xl overflow-hidden transition-all duration-500 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
@@ -122,20 +122,19 @@ export function Blog() {
 
               {/* Content */}
               <CardContent className="p-6">
-                <div className="font-nav flex items-center gap-2 text-xs text-muted-foreground tracking-wider uppercase mb-3">
+                <div className="font-nav flex items-center gap-2 text-xs text-gray-400 tracking-wider uppercase mb-3">
                   <Calendar className="w-4 h-4" />
                   {post.date}
                 </div>
 
-                <h3 className="font-h2 text-xl font-semibold text-foreground mb-3 group-hover:text-marble-brown transition-colors line-clamp-2">
+                <h3 className="font-h2 text-xl font-semibold text-gray-900 mb-3 group-hover:text-marble-brown transition-colors line-clamp-2">
                   {post.title}
                 </h3>
 
-                <p className="font-body text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-5">
+                <p className="font-body text-gray-500 text-sm leading-relaxed line-clamp-3 mb-5">
                   {post.excerpt}
                 </p>
 
-                {/* ✅ Updated Read More Button */}
                 <Link
                   href={`/blog/${post.slug}`}
                   className="font-nav inline-flex items-center justify-center px-5 py-2.5 
