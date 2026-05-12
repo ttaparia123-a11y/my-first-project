@@ -68,7 +68,7 @@ const services = [
     features: ["Wide variety of colors & patterns", "Delivery to your location", "Indian & Italian marble available"],
     num: "01",
      buttonLabel: "Learn More",
-    buttonHref: "/marble supply.tsx",
+    buttonHref: "/services/marble-supply",
   },
   {
     id: "granite",
@@ -80,7 +80,7 @@ const services = [
     features: ["Extreme durability", "Heat resistant", "Multiple finishes available","Delivery to your location" ],
     num: "02",
     buttonLabel: "Learn More",
-    buttonHref: "/contact?service=granite",
+    buttonHref: "/services/granite-supply",
   },
   {
   id: "tiles",
