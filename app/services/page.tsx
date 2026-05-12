@@ -67,6 +67,8 @@ const services = [
       "Premium Italian and Indian marbles sourced from the finest quarries worldwide. From classic Carrara to exotic varieties, we provide the perfect stone for your vision.",
     features: ["Wide variety of colors & patterns", "Delivery to your location", "Indian & Italian marble available"],
     num: "01",
+     buttonLabel: "Learn More",
+    buttonHref: "/marble supply.tsx",
   },
   {
     id: "granite",
@@ -77,6 +79,8 @@ const services = [
       "Durable and stunning granite selections for countertops, flooring, and facades. Our collection features rare colors and patterns that transform any space.",
     features: ["Extreme durability", "Heat resistant", "Multiple finishes available","Delivery to your location" ],
     num: "02",
+    buttonLabel: "Learn More",
+    buttonHref: "/contact?service=granite",
   },
   {
   id: "tiles",
@@ -92,6 +96,8 @@ const services = [
     "Wide Range of Finishes"
   ],
   num: "03",
+  buttonLabel: "Enquire Now",
+    buttonHref: "/contact?service=tiles",
 }, 
 ]
  
@@ -1102,10 +1108,10 @@ export default function ServicesPage() {
                         ))}
                       </div>
                       {/* Tenor Sans link */}
-                      <Link href={`/contact?service=${svc.id}`} className="svc-btn">
-                      Enquire Now
-                     <ArrowRight size={14} />
-                      </Link>
+                      <Link href={svc.buttonHref} className="svc-btn">
+                      {svc.buttonLabel}
+                      <ArrowRight size={14} />
+                       </Link>
                     </div>
                   </div>
                 </Reveal>

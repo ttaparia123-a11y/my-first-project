@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import Link from "next/link" // ✅ FIXED
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Phone, MapPin } from "lucide-react"
 
@@ -30,10 +30,9 @@ export function CTA() {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-24 md:py-32 relative overflow-hidden"
+      className="py-24 md:py-32 relative overflow-hidden bg-[#f9f6f1]"
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-marble-cream via-background to-marble-cream/50" />
+      {/* Subtle blobs */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-marble-brown/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-marble-gold/5 rounded-full blur-3xl" />
 
@@ -51,7 +50,7 @@ export function CTA() {
           </div>
 
           {/* Heading */}
-          <h2 className="font-h2 text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
+          <h2 className="font-h2 text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 text-balance">
             Ready to Transform{" "}
             <span className="italic font-normal text-marble-brown">
               Your Space?
@@ -59,7 +58,7 @@ export function CTA() {
           </h2>
 
           {/* Description */}
-          <p className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
+          <p className="font-body text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-10">
             Visit our showroom in Udaipur to explore our extensive collection of premium
             marble, granite, and designer tiles. Our experts are ready to help you find
             the perfect stone for your project.
@@ -67,8 +66,7 @@ export function CTA() {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            
-            {/* ✅ Schedule Visit (Link Working) */}
+
             <Link href="/contact">
               <Button
                 size="lg"
@@ -79,11 +77,9 @@ export function CTA() {
               </Button>
             </Link>
 
-            {/* ✅ Call Button (Clickable) */}
             <a href="tel:+917891704729">
               <Button
                 size="lg"
-                variant="outline"
                 className="font-nav bg-white text-black hover:bg-[var(--marble-brown)] hover:text-white px-8 py-6 text-xs tracking-widest uppercase border border-black transition-all duration-300 group"
               >
                 <Phone className="mr-2 w-4 h-4" />
@@ -95,13 +91,13 @@ export function CTA() {
 
           {/* Location */}
           <div
-            className={`inline-flex items-center gap-2 text-muted-foreground transition-all duration-1000 delay-300 ${
+            className={`inline-flex items-center gap-2 text-gray-500 transition-all duration-1000 delay-300 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             <MapPin className="w-5 h-5 text-marble-brown shrink-0" />
             <span className="font-body text-sm">
-             N.H. 8, Sukher, Udaipur, In Front of Skoda Showroom, Rajasthan 313001
+              N.H. 8, Sukher, Udaipur, In Front of Skoda Showroom, Rajasthan 313001
             </span>
           </div>
 
